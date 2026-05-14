@@ -1,0 +1,41 @@
+{
+    "name": "@cbse-wrapped/scraper",
+    "version": "0.1.0",
+    "type": "module",
+    "description": "Scraping and Analysis of CBSE 2026 results",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "files": [
+        "dist"
+    ],
+    "exports": {
+        "default": {
+            "import": "./dist/index.js",
+            "types": "./dist/index.d.ts",
+            "development": "./src/index.ts"
+        },
+        "schemas": {
+            "import": "./dist/schemas/index.js",
+            "types": "./dist/schemas/index.d.ts",
+            "development": "./src/types.ts"
+        }
+    },
+    "scripts": {
+        "build": "bunup",
+        "dev": "bunup --watch",
+        "test": "bun test"
+    },
+    "dependencies": {
+        "chalk": "^5.6.2",
+        "radashi": "^12.9.1",
+        "valibot": "^1.4.0"
+    },
+    "devDependencies": {},
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/d1vij/cbse-wrapped.git"
+    },
+    "homepage": "https://github.com/d1vij/cbse-wrapped#readme"
+}

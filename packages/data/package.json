@@ -1,0 +1,27 @@
+{
+    "name": "@cbse-wrapped/data",
+    "module": "index.ts",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "generate": "bun run src/index.ts"
+    },
+    "dependencies": {
+        "@cbse-wrapped/scraper": "workspace:*"
+    },
+    "devDependencies": {
+        "@types/bun": "latest"
+    },
+    "peerDependencies": {
+        "typescript": "^6"
+    },
+    "exports": {
+        ".": {
+            "default": "./dist/index.js",
+            "import": "./dist/index.js",
+            "types": "./dist/index.d.ts"
+        },
+        "./student-data/*.json": "./student-data/*.json",
+        "./results/*.json": "./results/*.json"
+    }
+}
