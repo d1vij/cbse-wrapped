@@ -1,5 +1,3 @@
-# Digilocker Results Scraping
+# CBSE Result Wrapped
 
-Scraping CBSE 2026 results using digilocker's api.
-
-(yes i know this leaks information)
+Analysis of CBSE class 12th result Result.

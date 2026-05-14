@@ -3,7 +3,7 @@ import path from "node:path";
 import { fetchForSchool } from "@cbse-wrapped/scraper";
 
 export async function generateData() {
-    const DataDir = path.join(__dirname,"../");
+    const DataDir = path.join(__dirname, "../");
     console.log(`DataDir: ${DataDir}`);
 
     const davIn = Bun.file(path.join(DataDir, "student-data", "dav.json"));

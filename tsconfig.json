@@ -7,9 +7,16 @@
         "strict": true,
         "skipLibCheck": true,
         "declaration": true,
-        "isolatedDeclarations": false,
-        "rootDir": ".",
-        "outDir": "./dist"
+        "isolatedDeclarations": false
     },
+    // reference
+    "references": [
+        {
+            "path": "./packages/scraper"
+        },
+        {
+            "path": "./packages/data"
+        }
+    ],
     "exclude": ["node_modules", "dist"]
 }
