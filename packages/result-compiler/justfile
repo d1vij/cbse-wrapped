@@ -1,0 +1,17 @@
+default:
+    @just --list
+
+# run pytest in tests/ directory
+test *args=".":
+    uv run pytest --capture no {{args}}
+
+# format using ruff
+format *args="":
+    uv run ruff format {{args}}
+
+# lint using ruff
+lint *args="":
+    uv run ruff check {{args}}
+
+jupyter:
+    uv run jupyter-lab --no-browser

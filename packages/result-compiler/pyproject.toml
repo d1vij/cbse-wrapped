@@ -1,0 +1,30 @@
+[project]
+name = "compiler"
+version = "0.1.0"
+description = "Compiles and transforms results"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "jupyter>=1.1.1",
+    "numpy>=2.4.5",
+    "pandas>=3.0.3",
+    "pydantic>=2.13.4",
+    "ruff>=0.15.13",
+    "ty>=0.0.36",
+]
+
+[tool.pyright]
+typeCheckingMode = "strict"
+
+[tool.ruff.format]
+quote-style = "double"
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
+
+[tool.setuptools.packages.find]
+include = ["compiler"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+]
