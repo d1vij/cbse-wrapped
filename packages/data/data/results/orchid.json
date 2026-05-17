@@ -99,8 +99,8 @@
                 "IGR2": "A2",
                 "IGR3": "A1"
             },
-            "duration_sec": 0.020319,
-            "request_id": "6c37c2a0-676e-4aae-9482-f398a25a70d1",
+            "duration_sec": 0.031502,
+            "request_id": "22d0ce05-cfe2-4d6b-bbf2-f4688f88c19d",
             "status": 200
         },
         {
@@ -202,8 +202,8 @@
                 "IGR2": "A2",
                 "IGR3": "A1"
             },
-            "duration_sec": 0.027097,
-            "request_id": "fa53e185-14d7-4fe8-955b-0a3a6e6fba8c",
+            "duration_sec": 0.021051,
+            "request_id": "f31fbe12-07bd-4d08-be94-66c48160630e",
             "status": 200
         },
         {
@@ -305,8 +305,8 @@
                 "IGR2": "A2",
                 "IGR3": "A1"
             },
-            "duration_sec": 0.030849,
-            "request_id": "dac9d572-fb77-40f1-b0a0-d473c6079b02",
+            "duration_sec": 0.02798,
+            "request_id": "d1c42415-d0e6-4ebd-bfe4-65e7b350bf9c",
             "status": 200
         },
         {
@@ -408,8 +408,8 @@
                 "IGR2": "A2",
                 "IGR3": "A1"
             },
-            "duration_sec": 0.022719,
-            "request_id": "bb90916d-0515-4049-9048-af56250128b6",
+            "duration_sec": 0.025366,
+            "request_id": "96bbf662-b96f-4298-9cf6-d3914fbbbcb4",
             "status": 200
         },
         {
@@ -511,8 +511,8 @@
                 "IGR2": "A2",
                 "IGR3": "A1"
             },
-            "duration_sec": 0.027589,
-            "request_id": "32f83e0b-a48d-4132-8097-b8eb60c5b514",
+            "duration_sec": 0.027252,
+            "request_id": "11496038-afa9-4b6a-94e8-ac817c617c72",
             "status": 200
         },
         {
@@ -614,8 +614,8 @@
                 "IGR2": "A2",
                 "IGR3": "A1"
             },
-            "duration_sec": 0.029401,
-            "request_id": "56803d2d-0921-474a-bd90-2d02c2d99b22",
+            "duration_sec": 0.024508,
+            "request_id": "2f80d49b-3453-471d-bb05-a90780d8c639",
             "status": 200
         },
         {
@@ -717,8 +717,8 @@
                 "IGR2": "A2",
                 "IGR3": "A1"
             },
-            "duration_sec": 0.025297,
-            "request_id": "6d7dc291-7358-49d2-beb7-639bcf977157",
+            "duration_sec": 0.03041,
+            "request_id": "aa6396f8-605e-4b54-ace0-a2ce0d560294",
             "status": 200
         },
         {
@@ -820,8 +820,8 @@
                 "IGR2": "A2",
                 "IGR3": "A1"
             },
-            "duration_sec": 0.034212,
-            "request_id": "efb0536b-4c8b-4422-9136-90e7c9a668f1",
+            "duration_sec": 0.034362,
+            "request_id": "da5b6c22-4746-4f2c-ae09-1d8479b67ab1",
             "status": 200
         },
         {
@@ -923,8 +923,8 @@
                 "IGR2": "A2",
                 "IGR3": "A1"
             },
-            "duration_sec": 0.027079,
-            "request_id": "628799d8-878c-481f-af15-f66577154cdf",
+            "duration_sec": 0.024463,
+            "request_id": "6ca1251e-6f25-4b89-8cb8-b35134c0dbb0",
             "status": 200
         },
         {
@@ -1026,8 +1026,8 @@
                 "IGR2": "A2",
                 "IGR3": "A1"
             },
-            "duration_sec": 0.029076,
-            "request_id": "b57775ee-557b-4147-a926-cc9245c0ff13",
+            "duration_sec": 0.0185,
+            "request_id": "76180616-52d3-47f8-a3dc-804e11979e9a",
             "status": 200
         },
         {
@@ -1129,8 +1129,8 @@
                 "IGR2": "A2",
                 "IGR3": "A1"
             },
-            "duration_sec": 0.03004,
-            "request_id": "62d20bd6-d6f4-43c8-bc42-a0a091da2203",
+            "duration_sec": 0.036648,
+            "request_id": "9c5fa1ba-a2b7-47b8-84a3-98463a05bd19",
             "status": 200
         },
         {
@@ -1232,8 +1232,8 @@
                 "IGR2": "A2",
                 "IGR3": "A2"
             },
-            "duration_sec": 0.024757,
-            "request_id": "7c289831-5840-4225-9125-a328bc20e17b",
+            "duration_sec": 0.028211,
+            "request_id": "4fce7af8-fa82-484f-a075-2b4e0e054f6c",
             "status": 200
         },
         {
@@ -1335,8 +1335,8 @@
                 "IGR2": "A1",
                 "IGR3": "A2"
             },
-            "duration_sec": 0.029087,
-            "request_id": "51909542-3a30-4bea-b2ba-f87e82d2ba3f",
+            "duration_sec": 0.018555,
+            "request_id": "e9fea854-a4a3-4b75-b3b5-10210825b124",
             "status": 200
         },
         {
@@ -1438,8 +1438,8 @@
                 "IGR2": "A2",
                 "IGR3": "A1"
             },
-            "duration_sec": 0.038556,
-            "request_id": "67711acf-8928-44fb-a142-dc57d7b22b99",
+            "duration_sec": 0.027786,
+            "request_id": "4e6ba363-3554-4922-ae3d-f67ea621d049",
             "status": 200
         },
         {
@@ -1541,8 +1541,8 @@
                 "IGR2": "A2",
                 "IGR3": "A2"
             },
-            "duration_sec": 0.02989,
-            "request_id": "08652f0e-bac3-4313-b9d1-c9b6e3091c5f",
+            "duration_sec": 0.01843,
+            "request_id": "29520f8b-f56f-4e7f-a461-b7c88163aef9",
             "status": 200
         },
         {
@@ -1644,8 +1644,8 @@
                 "IGR2": "A2",
                 "IGR3": "A2"
             },
-            "duration_sec": 0.028594,
-            "request_id": "916fd85a-0288-4628-ab36-63f230cd2c60",
+            "duration_sec": 0.023516,
+            "request_id": "34e08fff-8502-4f2c-b0d3-188171f42807",
             "status": 200
         },
         {
@@ -1747,8 +1747,8 @@
                 "IGR2": "A2",
                 "IGR3": "A2"
             },
-            "duration_sec": 0.052809,
-            "request_id": "a8e0a8ff-49e8-4e5c-895e-6816629a367f",
+            "duration_sec": 0.031283,
+            "request_id": "24de30f0-7ce5-4edf-af6d-4ca8ca04f3e3",
             "status": 200
         },
         {
@@ -1850,8 +1850,8 @@
                 "IGR2": "A2",
                 "IGR3": "A1"
             },
-            "duration_sec": 0.024727,
-            "request_id": "1f889d04-1893-4494-a100-852b78527215",
+            "duration_sec": 0.018457,
+            "request_id": "beb243c8-d404-4364-a932-41ae194ee3b8",
             "status": 200
         },
         {
@@ -1953,8 +1953,8 @@
                 "IGR2": "A2",
                 "IGR3": "A2"
             },
-            "duration_sec": 0.02024,
-            "request_id": "131faa36-f285-477b-9f6e-666e90d2ce48",
+            "duration_sec": 0.040347,
+            "request_id": "9e0e1679-572c-4761-84ac-64521d3d9a39",
             "status": 200
         },
         {
@@ -2056,8 +2056,8 @@
                 "IGR2": "A2",
                 "IGR3": "A1"
             },
-            "duration_sec": 0.021544,
-            "request_id": "715fe8a0-e93d-425b-9389-dcca7e97df75",
+            "duration_sec": 0.030376,
+            "request_id": "2ede0a4e-a91c-4e50-ae6c-ae80cedf78d4",
             "status": 200
         },
         {
@@ -2159,8 +2159,8 @@
                 "IGR2": "A2",
                 "IGR3": "A2"
             },
-            "duration_sec": 0.028204,
-            "request_id": "85e132ed-d013-40bb-9d72-6c46edcb166e",
+            "duration_sec": 0.02095,
+            "request_id": "47e58ab9-03e6-4f97-815f-607b54758610",
             "status": 200
         },
         {
@@ -2262,8 +2262,8 @@
                 "IGR2": "A2",
                 "IGR3": "A2"
             },
-            "duration_sec": 0.044788,
-            "request_id": "4e3fdea1-bb87-4343-8a4f-aa50d515ff6b",
+            "duration_sec": 0.025022,
+            "request_id": "67c19c64-8dae-42c4-ada0-6a3f9083159b",
             "status": 200
         },
         {
@@ -2365,8 +2365,8 @@
                 "IGR2": "A2",
                 "IGR3": "A1"
             },
-            "duration_sec": 0.030403,
-            "request_id": "6b45c4e3-3746-4a1f-ba04-4a0a1245097f",
+            "duration_sec": 0.064815,
+            "request_id": "1099657b-1eff-414b-9251-25ac13b17f35",
             "status": 200
         },
         {
@@ -2468,8 +2468,8 @@
                 "IGR2": "A1",
                 "IGR3": "A2"
             },
-            "duration_sec": 0.026343,
-            "request_id": "dabe960f-7adf-4885-9079-abb1631915fc",
+            "duration_sec": 0.032922,
+            "request_id": "f5d19682-d7b5-4ddd-9985-eb6c23cdb796",
             "status": 200
         },
         {
@@ -2571,8 +2571,8 @@
                 "IGR2": "A2",
                 "IGR3": "A1"
             },
-            "duration_sec": 0.026597,
-            "request_id": "9909f055-b67d-43e4-831d-410c29c10e39",
+            "duration_sec": 0.03923,
+            "request_id": "31f5a61a-f237-4ccf-8feb-cf5c5a74b9a6",
             "status": 200
         },
         {
@@ -2674,8 +2674,8 @@
                 "IGR2": "A2",
                 "IGR3": "A2"
             },
-            "duration_sec": 0.029144,
-            "request_id": "695fd42c-2947-4afe-8856-750d07223dbe",
+            "duration_sec": 0.05638,
+            "request_id": "d53253e0-c8e5-42d9-93bf-6575c23e44f6",
             "status": 200
         },
         {
@@ -2777,8 +2777,8 @@
                 "IGR2": "A2",
                 "IGR3": "A2"
             },
-            "duration_sec": 0.025224,
-            "request_id": "62e920d6-bf02-431d-b237-f727e93d084c",
+            "duration_sec": 0.015072,
+            "request_id": "6345564a-95d8-4b5e-9acd-910129f0f333",
             "status": 200
         },
         {
@@ -2880,8 +2880,8 @@
                 "IGR2": "A2",
                 "IGR3": "A2"
             },
-            "duration_sec": 0.02803,
-            "request_id": "c0ca3e70-187f-4502-ae0d-f418bf8fae5b",
+            "duration_sec": 0.015678,
+            "request_id": "49137d04-0bb9-4de7-a643-a1b9a13928b3",
             "status": 200
         },
         {
@@ -2983,8 +2983,8 @@
                 "IGR2": "A2",
                 "IGR3": "A2"
             },
-            "duration_sec": 0.024724,
-            "request_id": "5bcdeb4e-b476-4b04-b770-6b052d09d2fa",
+            "duration_sec": 0.023042,
+            "request_id": "674d0fdd-7543-46ec-8886-0f6126f6aee0",
             "status": 200
         },
         {
@@ -3086,8 +3086,8 @@
                 "IGR2": "A1",
                 "IGR3": "A1"
             },
-            "duration_sec": 0.032846,
-            "request_id": "67b30c70-f476-412a-ae70-906d71b87935",
+            "duration_sec": 0.01758,
+            "request_id": "09547160-ee64-421a-9335-a41737f6c09f",
             "status": 200
         },
         {
@@ -3189,8 +3189,8 @@
                 "IGR2": "A2",
                 "IGR3": "A2"
             },
-            "duration_sec": 0.030655,
-            "request_id": "08822308-7e0b-47a5-9e8a-8f40aba237ab",
+            "duration_sec": 0.022826,
+            "request_id": "eef78148-507d-49b9-8532-0bec7e45cccd",
             "status": 200
         },
         {
@@ -3292,8 +3292,8 @@
                 "IGR2": "A2",
                 "IGR3": "A2"
             },
-            "duration_sec": 0.032467,
-            "request_id": "6b9697ea-24df-4808-a9df-61434e555d87",
+            "duration_sec": 0.0302,
+            "request_id": "2a340643-362d-4c66-af67-51bf311bd9e5",
             "status": 200
         },
         {
@@ -3395,8 +3395,8 @@
                 "IGR2": "A2",
                 "IGR3": "A1"
             },
-            "duration_sec": 0.024484,
-            "request_id": "3b49bd55-b77b-4d17-8ca3-a9820df70d8a",
+            "duration_sec": 0.020062,
+            "request_id": "c7e88484-4430-4c12-a0f0-07739251f611",
             "status": 200
         }
     ],

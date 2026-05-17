@@ -21,7 +21,8 @@
             "import": "./dist/index.js",
             "types": "./dist/index.d.ts"
         },
-        "./student-data/*.json": "./student-data/*.json",
-        "./results/*.json": "./results/*.json"
+        "./data/*.json": "./data/*.json",
+        "./student-data/*.json": "./data/student-data/*.json",
+        "./results/*.json": "./data/results/*.json"
     }
 }
