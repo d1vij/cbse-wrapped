@@ -10,7 +10,7 @@ from .SubjectModel import SubjectId
 
 
 class PrimarySubjectModel(BaseModel):
-    # did the student pass in this subjec
+    # did the student pass in this subject
     subject_id: SubjectId
     passed: bool
     grade: Grade
@@ -71,5 +71,6 @@ class CleanedSchoolResultModel(BaseModel):
     school_name: str
     date_of_results: str
     subjects_available: dict[SubjectId, str]
+    streams:
     students_without_result: int
     students: list[CleanedStudentResultModel]

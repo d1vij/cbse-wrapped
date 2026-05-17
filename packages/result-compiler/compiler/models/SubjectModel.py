@@ -12,7 +12,7 @@ class SubjectModel(BaseModel):
     subject_name: str
 
 
-class Streams(BaseModel):
+class StreamModel(BaseModel):
     """
     represents an stream
     """
