@@ -1,4 +1,9 @@
-from typing import Literal
+# cleans the raw result response by doing type conversions,
+# feild eliminations, and metadata compilation which require
+# the raw result response object
+
+
+from typing import Literal, Union
 
 from compiler.models.CleanedResultModel import (
     CleanedSchoolResultModel,
@@ -13,6 +18,7 @@ from compiler.models.RawResponseModels import (
     RawStudentResultModel,
     SubjectIndexes,
 )
+from compiler.models.SubjectModel import SubjectId
 from compiler.utils.parse import parse_int
 
 
@@ -21,11 +27,12 @@ def clean_primary_subject(
 ) -> PrimarySubjectModel | None:
 
     subject_id = getattr(raw, f"SUB{idx}")
+
     if subject_id == "":
         return None
 
     return PrimarySubjectModel(
-        subject_id=parse_int(subject_id, 0),
+        subject_id=subject_id,
         passed=True if getattr(raw, f"PF{idx}") == "P" else False,
         grade=getattr(raw, f"GR{idx}"),
         marks_theory=parse_int(getattr(raw, f"MRK{idx}1"), 0),
@@ -35,18 +42,32 @@ def clean_primary_subject(
     )
 
 
-def clean_secondary_subject(
-    raw: RawStudentResultModel, idx: Literal["1", "2", "3"]
-) -> SkillSubjectModel:
-    return SkillSubjectModel(
-        subject_id=int(getattr(raw, f"ISUB{idx}")), grade=getattr(raw, f"IGR{idx}")
-    )
+def clean_skill_subject(
+    raw: RawStudentResultModel, idx: int
+) -> SkillSubjectModel | None:
+
+    subject_id = getattr(raw, f"ISUB{idx}")
+    if subject_id == "":
+        return None
+
+    return SkillSubjectModel(subject_id=subject_id, grade=getattr(raw, f"IGR{idx}"))
 
 
 def clean_student_result(
     result_response: RawResultResponseModel,
 ) -> CleanedStudentResultModel:
     raw = result_response.data
+
+    skill_subjects: Union[Literal[False], list[SkillSubjectModel]]
+    if raw.IS_SKILL == "N":
+        skill_subjects = False
+    else:
+        skill_subjects = []
+        for idx in range(1, 4):
+            subject = clean_skill_subject(raw, idx)
+            if subject:
+                skill_subjects.append(subject)
+
     return CleanedStudentResultModel(
         rollnumber=int(raw.RROLL),
         name_candidate=raw.CNAME,
@@ -69,14 +90,26 @@ def clean_student_result(
                 "s6": clean_primary_subject(raw, "6"),
             }
         ),
-        secondary_subjects=False
-        if raw.IS_SKILL == "N"
-        else [
-            clean_secondary_subject(raw, "1"),
-            clean_secondary_subject(raw, "2"),
-            clean_secondary_subject(raw, "3"),
-        ],
+        skill_subjects=skill_subjects,
     )
+
+
+def generate_subject_list(
+    students: list[RawResultResponseModel],
+) -> dict[SubjectId, str]:
+    subjects: dict[SubjectId, str] = {}
+    for student in students:
+        for idx in range(1, 7):
+            sub_code = getattr(student.data, f"SUB{idx}")
+            if sub_code != "":
+                subjects[sub_code] = getattr(student.data, f"SNAME{idx}")
+
+        for idx in range(1, 4):
+            sub_code = getattr(student.data, f"ISUB{idx}")
+            if sub_code != "":
+                subjects[sub_code] = getattr(student.data, f"ISNAME{idx}")
+
+    return subjects
 
 
 def clean_school_result(raw: RawSchoolResultJsonModel) -> CleanedSchoolResultModel:
@@ -93,6 +126,7 @@ def clean_school_result(raw: RawSchoolResultJsonModel) -> CleanedSchoolResultMod
         centre_number=int(student.CENT),
         date_of_results=student.DOD,
         students_without_result=len(raw.failed),
+        subjects_available=generate_subject_list(raw.success),
         # consume the iterator so that we can serialize it
         students=list(map(clean_student_result, raw.success)),
     )

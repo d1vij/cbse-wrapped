@@ -1,6 +1,6 @@
 from pydantic import BaseModel, UUID4
 
-SubjectId = int
+SubjectId = str
 
 
 class SubjectModel(BaseModel):

@@ -25,6 +25,8 @@ class SkillSubjectModel(BaseModel):
     grade: Grade
 
 
+# keep this as an dict instead of list so that 
+# later on it becomes easier to form a dataframe out of it
 class StudentSubjectsModel(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
     s1: PrimarySubjectModel = Field(alias="1")
@@ -47,7 +49,7 @@ class CleanedStudentResultModel(BaseModel):
 
     primary_subjects: StudentSubjectsModel
     # secondary/internal subjects like work experience
-    secondary_subjects: Union[list[SkillSubjectModel], Literal[False]]
+    skill_subjects: Union[list[SkillSubjectModel], Literal[False]]
 
     cleared_all_subjects: bool
     result_status: Literal["pass", "compartment"]
@@ -68,6 +70,6 @@ class CleanedSchoolResultModel(BaseModel):
     centre_number: int
     school_name: str
     date_of_results: str
-
+    subjects_available: dict[SubjectId, str]
     students_without_result: int
     students: list[CleanedStudentResultModel]
