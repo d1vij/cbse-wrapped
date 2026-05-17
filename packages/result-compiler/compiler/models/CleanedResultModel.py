@@ -3,9 +3,10 @@ from __future__ import annotations
 
 from typing import Literal, Union
 
-from pydantic import BaseModel, Field
-from RawResponseModels import Grade, Sex
-from SubjectModel import SubjectId
+from pydantic import BaseModel, ConfigDict, Field
+
+from .RawResponseModels import Grade, Sex
+from .SubjectModel import SubjectId
 
 
 class PrimarySubjectModel(BaseModel):
@@ -25,12 +26,13 @@ class SkillSubjectModel(BaseModel):
 
 
 class StudentSubjectsModel(BaseModel):
-    _1: PrimarySubjectModel = Field(alias="1")
-    _2: PrimarySubjectModel = Field(alias="2")
-    _3: PrimarySubjectModel = Field(alias="3")
-    _4: PrimarySubjectModel = Field(alias="4")
-    _5: PrimarySubjectModel = Field(alias="5")
-    _6: PrimarySubjectModel | None = Field(alias="6")
+    model_config = ConfigDict(populate_by_name=True)
+    s1: PrimarySubjectModel = Field(alias="1")
+    s2: PrimarySubjectModel = Field(alias="2")
+    s3: PrimarySubjectModel = Field(alias="3")
+    s4: PrimarySubjectModel = Field(alias="4")
+    s5: PrimarySubjectModel = Field(alias="5")
+    s6: PrimarySubjectModel | None = Field(alias="6")
 
 
 class CleanedStudentResultModel(BaseModel):
@@ -66,6 +68,6 @@ class CleanedSchoolResultModel(BaseModel):
     centre_number: int
     school_name: str
     date_of_results: str
-    
+
     students_without_result: int
     students: list[CleanedStudentResultModel]

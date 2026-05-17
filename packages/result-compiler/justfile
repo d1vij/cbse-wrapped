@@ -3,7 +3,7 @@ default:
 
 # run pytest in tests/ directory
 test *args=".":
-    uv run pytest --capture no {{args}}
+    uv run pytest {{args}}
 
 # format using ruff
 format *args="":
