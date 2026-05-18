@@ -3,6 +3,8 @@ default:
 
 # run pytest in tests/ directory
 test *args=".":
+    #!/usr/bin/env bash
+    cd {{invocation_directory()}}
     uv run pytest {{args}}
 
 # format using ruff

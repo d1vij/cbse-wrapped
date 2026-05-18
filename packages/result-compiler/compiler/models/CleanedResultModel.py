@@ -3,10 +3,10 @@ from __future__ import annotations
 
 from typing import Literal, Union
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict
 
 from .RawResponseModels import Grade, Sex
-from .SubjectModel import SubjectId
+from .SubjectModel import SubjectId, StreamModel, StreamId
 
 
 class PrimarySubjectModel(BaseModel):
@@ -20,21 +20,21 @@ class PrimarySubjectModel(BaseModel):
     marks_total_words: str
 
 
-class SkillSubjectModel(BaseModel):
+class SecondarySubjectModel(BaseModel):
     subject_id: SubjectId
     grade: Grade
 
 
-# keep this as an dict instead of list so that 
+# keep this as an dict instead of list so that
 # later on it becomes easier to form a dataframe out of it
 class StudentSubjectsModel(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
-    s1: PrimarySubjectModel = Field(alias="1")
-    s2: PrimarySubjectModel = Field(alias="2")
-    s3: PrimarySubjectModel = Field(alias="3")
-    s4: PrimarySubjectModel = Field(alias="4")
-    s5: PrimarySubjectModel = Field(alias="5")
-    s6: PrimarySubjectModel | None = Field(alias="6")
+    sub_1: PrimarySubjectModel
+    sub_2: PrimarySubjectModel
+    sub_3: PrimarySubjectModel
+    sub_4: PrimarySubjectModel
+    sub_5: PrimarySubjectModel
+    sub_6: PrimarySubjectModel | None
 
 
 class CleanedStudentResultModel(BaseModel):
@@ -46,10 +46,12 @@ class CleanedStudentResultModel(BaseModel):
     sex: Sex
     catagory: Union[str, Literal[False]]
     candidate_type: Literal["regular", "private"]
+    stream_id: StreamId
 
     primary_subjects: StudentSubjectsModel
+
     # secondary/internal subjects like work experience
-    skill_subjects: Union[list[SkillSubjectModel], Literal[False]]
+    secondary_subjects: list[SecondarySubjectModel]
 
     cleared_all_subjects: bool
     result_status: Literal["pass", "compartment"]
@@ -71,6 +73,6 @@ class CleanedSchoolResultModel(BaseModel):
     school_name: str
     date_of_results: str
     subjects_available: dict[SubjectId, str]
-    streams:
+    streams: dict[StreamId, StreamModel]
     students_without_result: int
     students: list[CleanedStudentResultModel]

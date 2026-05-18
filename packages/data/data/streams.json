@@ -1,0 +1,56 @@
+[
+    {
+        "stream_id": "e2258024-ade4-4b00-a82f-2b42b5c3d5d7",
+        "primary_stream": "PCB",
+        "secondary_stream": "M",
+        "subjects": ["301", "041", "042", "043", "044"]
+    },
+    {
+        "stream_id": "d9484c25-8671-4a50-9c3d-c74456abd89e",
+        "primary_stream": "PCB",
+        "secondary_stream": "Geo",
+        "subjects": ["301", "029", "042", "043", "044"]
+    },
+    {
+        "stream_id": "ebc35c5a-5ae9-4770-95bc-52731d1a07f1",
+        "primary_stream": "PCB",
+        "secondary_stream": "MMS",
+        "subjects": ["301", "042", "043", "044", "835"]
+    },
+    {
+        "stream_id": "4ab90d1e-b4d6-4066-9663-fa43fa76de3c",
+        "primary_stream": "PCM",
+        "secondary_stream": "IP",
+        "subjects": ["301", "041", "042", "043", "065"]
+    },
+    {
+        "stream_id": "77cbdfbf-9dc9-464b-9eff-ab5d43de85b9",
+        "primary_stream": "PCM",
+        "secondary_stream": "Geo",
+        "subjects": ["301", "029", "041", "042", "043"]
+    },
+    {
+        "stream_id": "57d5046a-57f4-4ac8-9af1-03f74d051e52",
+        "primary_stream": "PCM",
+        "secondary_stream": "MMS",
+        "subjects": ["301", "041", "042", "043", "835"]
+    },
+    {
+        "stream_id": "c134d014-d536-4834-a98f-3a423f4428fc",
+        "primary_stream": "Commerce",
+        "secondary_stream": "Applied Maths",
+        "subjects": ["301", "030", "054", "055", "241"]
+    },
+    {
+        "stream_id": "1dd26ae0-5913-4015-8f1f-d4671d7e2760",
+        "primary_stream": "Commerce",
+        "secondary_stream": "MMS",
+        "subjects": ["301", "030", "054", "055", "835"]
+    },
+    {
+        "stream_id": "02692ecf-df27-483b-b526-eaea565348a1",
+        "primary_stream": "Commerce",
+        "secondary_stream": "Geo",
+        "subjects": ["301", "029", "030", "054", "055"]
+    }
+]

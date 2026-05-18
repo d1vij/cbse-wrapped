@@ -3,13 +3,14 @@
 # the raw result response object
 
 
-from typing import Literal, Union
+import pandas as pd
 
+from compiler.generate_streams import generate_school_streams, resolve_stream
 from compiler.models.CleanedResultModel import (
     CleanedSchoolResultModel,
     CleanedStudentResultModel,
     PrimarySubjectModel,
-    SkillSubjectModel,
+    SecondarySubjectModel,
     StudentSubjectsModel,
 )
 from compiler.models.RawResponseModels import (
@@ -42,15 +43,15 @@ def clean_primary_subject(
     )
 
 
-def clean_skill_subject(
+def clean_secondary_subject(
     raw: RawStudentResultModel, idx: int
-) -> SkillSubjectModel | None:
+) -> SecondarySubjectModel | None:
 
     subject_id = getattr(raw, f"ISUB{idx}")
     if subject_id == "":
         return None
 
-    return SkillSubjectModel(subject_id=subject_id, grade=getattr(raw, f"IGR{idx}"))
+    return SecondarySubjectModel(subject_id=subject_id, grade=getattr(raw, f"IGR{idx}"))
 
 
 def clean_student_result(
@@ -58,15 +59,40 @@ def clean_student_result(
 ) -> CleanedStudentResultModel:
     raw = result_response.data
 
-    skill_subjects: Union[Literal[False], list[SkillSubjectModel]]
-    if raw.IS_SKILL == "N":
-        skill_subjects = False
-    else:
-        skill_subjects = []
-        for idx in range(1, 4):
-            subject = clean_skill_subject(raw, idx)
-            if subject:
-                skill_subjects.append(subject)
+    secondary_subjects: list[SecondarySubjectModel] = []
+    for idx in range(1, 4):
+        subject = clean_secondary_subject(raw, idx)
+        if subject:
+            secondary_subjects.append(subject)
+
+    primary_subjects = StudentSubjectsModel.model_validate(
+        {
+            "sub_1": clean_primary_subject(raw, "1"),
+            "sub_2": clean_primary_subject(raw, "2"),
+            "sub_3": clean_primary_subject(raw, "3"),
+            "sub_4": clean_primary_subject(raw, "4"),
+            "sub_5": clean_primary_subject(raw, "5"),
+            "sub_6": clean_primary_subject(raw, "6"),
+        }
+    )
+
+    subjects_series = pd.Series(
+        [
+            primary_subjects.sub_1.subject_id,
+            primary_subjects.sub_2.subject_id,
+            primary_subjects.sub_3.subject_id,
+            primary_subjects.sub_4.subject_id,
+            primary_subjects.sub_5.subject_id,
+            primary_subjects.sub_6.subject_id if primary_subjects.sub_6 else None,
+        ]
+    ).dropna()
+
+    stream_id = resolve_stream(subjects_series)
+
+    if stream_id is None:
+        raise ValueError(
+            f"Couldnt resolve streams for subjects with code {primary_subjects}"
+        )
 
     return CleanedStudentResultModel(
         rollnumber=int(raw.RROLL),
@@ -74,23 +100,15 @@ def clean_student_result(
         name_mother=raw.MNAME,
         name_father=raw.FNAME,
         sex=raw.SEX,
+        stream_id=stream_id,
         catagory=False if raw.CAT == "" else raw.CAT,
         candidate_type="regular" if raw.REG == "E" else "private",
         cleared_all_subjects=True if raw.RES == "PASS" else False,
         result_status="pass" if raw.RESULT == "PASS" else "compartment",
         compartment_subject_codes=raw.COMPTT,
         total_marks=int(raw.TMRK),
-        primary_subjects=StudentSubjectsModel.model_validate(
-            {
-                "s1": clean_primary_subject(raw, "1"),
-                "s2": clean_primary_subject(raw, "2"),
-                "s3": clean_primary_subject(raw, "3"),
-                "s4": clean_primary_subject(raw, "4"),
-                "s5": clean_primary_subject(raw, "5"),
-                "s6": clean_primary_subject(raw, "6"),
-            }
-        ),
-        skill_subjects=skill_subjects,
+        primary_subjects=primary_subjects,
+        secondary_subjects=secondary_subjects,
     )
 
 
@@ -118,15 +136,17 @@ def clean_school_result(raw: RawSchoolResultJsonModel) -> CleanedSchoolResultMod
 
     # rather than passing additional options,
     # we'll infer school meta from a student object
-    student = raw.success[0].data
+    any_student = raw.success[0].data
 
+    students = list(map(clean_student_result, raw.success))
     return CleanedSchoolResultModel(
-        school_number=int(student.SCH),
-        school_name=student.SCH_NAME,
-        centre_number=int(student.CENT),
-        date_of_results=student.DOD,
+        school_number=int(any_student.SCH),
+        school_name=any_student.SCH_NAME,
+        centre_number=int(any_student.CENT),
+        date_of_results=any_student.DOD,
         students_without_result=len(raw.failed),
         subjects_available=generate_subject_list(raw.success),
+        streams=generate_school_streams(students),
         # consume the iterator so that we can serialize it
-        students=list(map(clean_student_result, raw.success)),
+        students=students,
     )
