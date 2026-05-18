@@ -1,7 +1,7 @@
 from pathlib import Path
 
 # TODO: find some better way to resolve data package
-data_dir = Path(__file__).parent.parent.parent.parent.joinpath("data")
+data_dir = Path(__file__).parent.parent.parent.parent / "data" / "data"
 
 
 def read_from(filename: str) -> str:

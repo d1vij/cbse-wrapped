@@ -1,7 +1,7 @@
 from typing import Any
 
 
-def parse_int[N = None](value: Any, null_value: N = None) -> int | N:  # ty:ignore[invalid-parameter-default]
+def parse_int[N = None](value: Any, null_value: N = None) -> int | N:
     """
     parses an integer and returns null_value in case of ValueError or TypeError. This function never raises an exception.
     """

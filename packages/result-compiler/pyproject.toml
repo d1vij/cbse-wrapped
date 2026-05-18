@@ -8,6 +8,7 @@ dependencies = [
     "jupyter>=1.1.1",
     "numpy>=2.4.5",
     "pandas>=3.0.3",
+    "pip>=26.1.1",
     "pydantic>=2.13.4",
     "ruff>=0.15.13",
     "ty>=0.0.36",
@@ -26,5 +27,6 @@ include = ["compiler"]
 
 [dependency-groups]
 dev = [
+    "pandas-stubs>=3.0.0.260204",
     "pytest>=9.0.3",
 ]
