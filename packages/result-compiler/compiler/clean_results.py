@@ -5,11 +5,10 @@
 
 import pandas as pd
 
-from compiler.generate_streams import generate_school_streams, resolve_stream
 from compiler.models.CleanedResultModel import (
     CleanedSchoolResultModel,
     CleanedStudentResultModel,
-    PrimarySubjectModel,
+    CleanedPrimarySubjectModel,
     SecondarySubjectModel,
     StudentSubjectsModel,
 )
@@ -21,21 +20,23 @@ from compiler.models.RawResponseModels import (
 )
 from compiler.models.SubjectModel import SubjectId
 from compiler.utils.parse import parse_int
+from compiler.utils.stream_utils import generate_school_streams, resolve_stream
 
 
 def clean_primary_subject(
     raw: RawStudentResultModel, idx: SubjectIndexes
-) -> PrimarySubjectModel | None:
+) -> CleanedPrimarySubjectModel | None:
 
     subject_id = getattr(raw, f"SUB{idx}")
 
     if subject_id == "":
         return None
 
-    return PrimarySubjectModel(
+    return CleanedPrimarySubjectModel(
         subject_id=subject_id,
         passed=True if getattr(raw, f"PF{idx}") == "P" else False,
         grade=getattr(raw, f"GR{idx}"),
+        # parsing the marks as integers because CBSE rounds off all marks to ints
         marks_theory=parse_int(getattr(raw, f"MRK{idx}1"), 0),
         marks_practicals=parse_int(getattr(raw, f"MRK{idx}2"), 0),
         marks_total=parse_int(getattr(raw, f"MRK{idx}3"), 0),
@@ -95,7 +96,7 @@ def clean_student_result(
         )
 
     return CleanedStudentResultModel(
-        rollnumber=int(raw.RROLL),
+        roll_number=int(raw.RROLL),
         name_candidate=raw.CNAME,
         name_mother=raw.MNAME,
         name_father=raw.FNAME,
@@ -107,6 +108,7 @@ def clean_student_result(
         result_status="pass" if raw.RESULT == "PASS" else "compartment",
         compartment_subject_codes=raw.COMPTT,
         total_marks=int(raw.TMRK),
+        total_primary_subjects=subjects_series.size,
         primary_subjects=primary_subjects,
         secondary_subjects=secondary_subjects,
     )

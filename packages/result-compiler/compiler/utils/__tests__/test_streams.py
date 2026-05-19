@@ -1,11 +1,12 @@
 import pandas as pd
 
-from compiler.generate_streams import (
+from compiler.models.SubjectModel import StreamJsonModel
+from compiler.utils.json_utils import read_from
+
+from ..stream_utils import (
     get_stream_metadata,
     resolve_stream,
 )
-from compiler.models.SubjectModel import StreamJsonModel
-from compiler.utils.json_utils import read_from
 
 
 # TODO: Add before each test to load the streams

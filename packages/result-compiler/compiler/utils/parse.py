@@ -9,3 +9,13 @@ def parse_int[N = None](value: Any, null_value: N = None) -> int | N:
         return int(value)
     except ValueError, TypeError:
         return null_value
+
+
+def parse_float[N = None](value: Any, null_value: N = None) -> float | N:
+    """
+    parses an float and returns null_value in case of ValueError or TypeError. This function never raises an exception.
+    """
+    try:
+        return float(value)
+    except ValueError, TypeError:
+        return null_value
