@@ -1,5 +1,5 @@
-import path from "node:path";
 import fs from "node:fs/promises";
+import path from "node:path";
 import { fetchForSchool, SchoolRecordSchema } from "@cbse-wrapped/scraper";
 import * as v from "valibot";
 import { dataDir } from "~/index";

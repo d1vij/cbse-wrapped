@@ -10,18 +10,23 @@ export default defineWorkspace(
                 entry: ["src/index.ts", "src/schemas/index.ts"],
             },
         },
-
         {
             name: "orchestrator",
             root: "packages/orchestrator",
 
             config: {
-                entry: ["src/index.ts", "scripts/compile.ts", "scripts/scrape.ts"],
+                outDir: "dist",
+                entry: [
+                    "src/index.ts",
+                    "src/scripts/compile.ts",
+                    "src/scripts/scrape.ts",
+                ],
             },
         },
     ],
     {
         format: ["esm"],
+        target: "bun",
         dts: {
             inferTypes: true,
         },

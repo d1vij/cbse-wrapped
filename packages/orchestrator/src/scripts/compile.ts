@@ -1,9 +1,10 @@
-import { dataDir } from "~/index";
-import { $ } from "bun";
 import path from "node:path";
+import { $ } from "bun";
+import { dataDir } from "~/index";
 
 const compilerPackageDir = path.join(
     import.meta.dir,
+    "..",
     "..",
     "..",
     "result-compiler",

@@ -1,19 +1,18 @@
 {
     "name": "@cbse-wrapped/orchestrator",
-    "module": "dist/index.ts",
+    "module": "src/index.ts",
     "type": "module",
     "private": true,
     "exports": {
-        ".":{
-            "import":"./dist/index.ts",
-            "default":"./dist/index.ts",
-            "types":"./dist/types.d.ts"
-        },
-        "./scripts/*": "./scripts/*"
+        ".": {
+            "import": "./dist/index.ts",
+            "default": "./dist/index.ts",
+            "types": "./dist/types.d.ts"
+        }
     },
     "scripts": {
-        "scrape": "bun run scripts/scrape.ts",
-        "compile": "bun run scripts/compile.ts"
+        "scrape": "bun run src/scripts/scrape.ts",
+        "compile": "bun run src/scripts/compile.ts"
     },
     "devDependencies": {
         "@types/bun": "latest"
