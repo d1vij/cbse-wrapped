@@ -1,1 +1,1 @@
-bunx tsc --build  && bun run lint && bun run format
+bunx tsc --noEmit && bun run lint && bun run format
