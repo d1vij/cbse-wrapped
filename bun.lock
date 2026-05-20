@@ -18,13 +18,23 @@
     },
     "packages/data": {
       "name": "@cbse-wrapped/data",
+      "devDependencies": {
+        "@types/bun": "latest",
+      },
+      "peerDependencies": {
+        "typescript": "^6",
+      },
+    },
+    "packages/orchestrator": {
+      "name": "@cbse-wrapped/orchestrator",
       "dependencies": {
-        "@cbse-wrapped/scraper": "workspace:*",
+        "valibot": "^1.4.0",
       },
       "devDependencies": {
         "@types/bun": "latest",
       },
       "peerDependencies": {
+        "@cbse-wrapped/scraper": "workspace:*",
         "typescript": "^6",
       },
     },
@@ -72,6 +82,8 @@
     "@bunup/shared": ["@bunup/shared@0.16.28", "", { "peerDependencies": { "typescript": ">=4.5.0" }, "optionalPeers": ["typescript"] }, "sha512-6xyJB5/OFYf0tLCQSRL+PrgzYlS0KabysM06cBY0Ijuk1tr5Aak8/NqzE6ifu+s6K0mstnGXQ+6DqtNlOMEazw=="],
 
     "@cbse-wrapped/data": ["@cbse-wrapped/data@workspace:packages/data"],
+
+    "@cbse-wrapped/orchestrator": ["@cbse-wrapped/orchestrator@workspace:packages/orchestrator"],
 
     "@cbse-wrapped/scraper": ["@cbse-wrapped/scraper@workspace:packages/scraper"],
 

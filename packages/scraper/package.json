@@ -17,8 +17,7 @@
         },
         "schemas": {
             "import": "./dist/schemas/index.js",
-            "types": "./dist/schemas/index.d.ts",
-            "development": "./src/types.ts"
+            "types": "./dist/schemas/index.d.ts"
         }
     },
     "scripts": {

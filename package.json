@@ -25,16 +25,14 @@
     "license": "MIT",
     "private": true,
     "scripts": {
-        "build": "bunup",
         "dev": "bunup --watch",
-        "dev:site": "bun run --filter @cbse-wrapped/app dev",
-        "build:app": "bun run --filter @cbse-wrapped/app build",
         "lint": "biome check . --write",
         "format": "biome format --write .",
         "tsc": "tsc --noEmit",
         "test": "bun test",
-        "release": "bumpp -r --commit --push --tag",
-        "prepare": "husky"
+        "prepare": "husky",
+        "orchestrator:scrape": "bun run --filter @cbse-wrapped/orchestrator scripts/scrape.ts",
+        "orchestrator:compile": "bun run --filter @cbse-wrapped/orchestrator scripts/compile.ts"
     },
     "type": "module",
     "types": "./dist/index.d.ts",

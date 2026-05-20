@@ -9,10 +9,14 @@ import type { CBSEResultResponse } from "~/schemas/CBSEResultSchema";
 import type { FailedResultFetch } from "~/schemas/FailedResultFetchSchema";
 
 import {
+    type SchoolRecord,
     SchoolRecordSchema,
     type Student,
 } from "~/schemas/SchoolRecordsSchema";
-import { SchoolResultSchema } from "~/schemas/SchoolResultSchema";
+import {
+    type SchoolResult,
+    SchoolResultSchema,
+} from "~/schemas/SchoolResultSchema";
 
 /**
  * Fetches the result for a single student.
@@ -76,15 +80,12 @@ async function fetchStudent(
 
 /**
  * Fetches result for a single school. A school represents an {@link SchoolRecordSchema} wherein all the {@link Student} have same `school_number` and `centre_number`
- * @param datafile A {@link Bun.BunFile} instance for the school's corresponding {@link SchoolRecordSchema}.
- * @param outfile A {@link Bun.BunFile} instance for the output {@link SchoolResultSchema}
+ * @param data SchoolRecord
+ * @returns Promise<SchoolResult>
  */
 export async function fetchForSchool(
-    datafile: Bun.BunFile,
-    outfile: Bun.BunFile,
-) {
-    const data = v.parse(SchoolRecordSchema, await datafile.json());
-
+    data: SchoolRecord,
+): Promise<SchoolResult> {
     // fetching 10 parallel requests is pretty fast even for 100+ students
     // without getting ratelimited whatsoever. so increasing it might not be beneficial per se
     const results = await parallel<
@@ -104,10 +105,8 @@ export async function fetchForSchool(
         `${MARKER} Scraped (${chalk.green(successful.length)} + ${chalk.red(failed.length)})/${data.students.length} results.`,
     );
 
-    const resultJson = v.parse(SchoolResultSchema, {
+    return v.parse(SchoolResultSchema, {
         success: successful,
         failed: failed,
     });
-
-    await outfile.write(JSON.stringify(resultJson, null, 4));
 }

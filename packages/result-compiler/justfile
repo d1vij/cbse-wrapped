@@ -17,3 +17,6 @@ lint *args="":
 
 jupyter:
     uv run jupyter-lab --no-browser
+
+cli *args="":
+    uv run ./scripts/cli.py {{args}}

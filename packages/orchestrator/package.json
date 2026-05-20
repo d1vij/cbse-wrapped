@@ -1,0 +1,28 @@
+{
+    "name": "@cbse-wrapped/orchestrator",
+    "module": "dist/index.ts",
+    "type": "module",
+    "private": true,
+    "exports": {
+        ".":{
+            "import":"./dist/index.ts",
+            "default":"./dist/index.ts",
+            "types":"./dist/types.d.ts"
+        },
+        "./scripts/*": "./scripts/*"
+    },
+    "scripts": {
+        "scrape": "bun run scripts/scrape.ts",
+        "compile": "bun run scripts/compile.ts"
+    },
+    "devDependencies": {
+        "@types/bun": "latest"
+    },
+    "peerDependencies": {
+        "typescript": "^6",
+        "@cbse-wrapped/scraper": "workspace:*"
+    },
+    "dependencies": {
+        "valibot": "^1.4.0"
+    }
+}
