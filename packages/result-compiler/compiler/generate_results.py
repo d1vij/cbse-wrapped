@@ -117,7 +117,7 @@ def generate_student_result(
     )
 
 
-def get_school_percentage_ser(
+def get_student_percentage_ser(
     students: list[CompiledStudentResultModel],
 ) -> pd.Series:
     records: list[NonZeroFloat] = []
@@ -129,9 +129,18 @@ def get_school_percentage_ser(
 def complile_stream(
     stream: StreamModel, students: list[CompiledStudentResultModel]
 ) -> CompliedStreamModel:
+
+    stream_students = get_students_having_stream(stream.stream_id, students)
+    percentage_ser = get_student_percentage_ser(stream_students)
+
     return CompliedStreamModel(
         **stream.model_dump(),
-        student_count=len(get_students_having_stream(stream.stream_id, students)),
+        students_total=percentage_ser.size,
+        students_passed=sum(1 for s in students if s.result_status == "pass"),
+        percentage_mean=percentage_ser.mean(),
+        percentage_median=percentage_ser.median(),
+        percentage_max=percentage_ser.max(),
+        percentage_min=percentage_ser.min(),
     )
 
 
@@ -150,7 +159,7 @@ def generate_school_result(
         )
         for s in school_results.students
     ]
-    percentage_ser = get_school_percentage_ser(students)
+    percentage_ser = get_student_percentage_ser(students)
 
     streams: dict[StreamId, CompliedStreamModel] = {
         stream_id: complile_stream(stream, students)

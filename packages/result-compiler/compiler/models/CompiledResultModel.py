@@ -39,7 +39,13 @@ class CompiledStudentResultModel(CleanedStudentResultModel):
 
 
 class CompliedStreamModel(StreamModel):
-    student_count: NonZeroInt
+    students_total: int
+    students_passed: int
+
+    percentage_mean: NonZeroFloat
+    percentage_median: NonZeroFloat
+    percentage_max: NonZeroFloat
+    percentage_min: NonZeroFloat
 
 
 class CompiledSchoolResultModel(CleanedSchoolResultModel):
