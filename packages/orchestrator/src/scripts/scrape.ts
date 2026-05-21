@@ -1,3 +1,9 @@
+/**
+ * NOTE: run this script using the `bun run orchestrator:compile`
+ * command or directly using `bun`instead of transpiling it first
+ * since the bunup dist folder resolution is broken and im too
+ * lazy to fix it rn.
+ */
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fetchForSchool, SchoolRecordSchema } from "@cbse-wrapped/scraper";

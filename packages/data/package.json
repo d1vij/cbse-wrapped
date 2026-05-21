@@ -3,19 +3,8 @@
     "module": "index.ts",
     "type": "module",
     "private": true,
-    "devDependencies": {
-        "@types/bun": "latest"
-    },
-    "peerDependencies": {
-        "typescript": "^6"
-    },
     "exports": {
-        ".": {
-            "default": "./dist/index.js",
-            "import": "./dist/index.js",
-            "types": "./dist/index.d.ts"
-        },
-        "./data/*.json": "./data/*.json",
+        "./*.json": "./data/*.json",
         "./student-data/*.json": "./data/student-data/*.json",
         "./results/*.json": "./data/results/*.json"
     }

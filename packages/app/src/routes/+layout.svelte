@@ -1,0 +1,26 @@
+<script lang="ts">
+import "./layout.css";
+import favicon from "$lib/assets/favicon.svg";
+import Header from "$lib/components/Header.svelte";
+
+let { children } = $props();
+</script>
+
+<svelte:head><link rel="icon" href={favicon} /></svelte:head>
+
+<div class="p-8">
+{@render children()}
+</div>
+<!-- <div class="flex min-h-dvh w-dvw flex-col justify-between">
+    <footer
+        class="flex h-10 w-full items-center justify-center bg-subtle font-mono text-xs font-semibold text-muted"
+    >
+        <span
+            >Created by @<a
+                href="https://github.com/d1vij"
+                class="underline decoration-wavy"
+                target="_blank">d1vij</a
+            > | Divij Verma</span
+        >
+    </footer>
+</div> -->

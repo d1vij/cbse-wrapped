@@ -19,9 +19,11 @@
     },
     "peerDependencies": {
         "typescript": "^6",
-        "@cbse-wrapped/scraper": "workspace:*"
+        "@cbse-wrapped/scraper": "workspace:*",
+        "@cbse-wrapped/app": "workspace:*"
     },
     "dependencies": {
+        "chalk": "^5.6.2",
         "valibot": "^1.4.0"
     }
 }

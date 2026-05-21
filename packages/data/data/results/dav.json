@@ -26,63 +26,108 @@
             "primary_stream": "PCB",
             "secondary_stream": "M",
             "subjects": ["301", "041", "042", "043", "044"],
-            "student_count": 10
+            "students_total": 10,
+            "students_passed": 10,
+            "percentage_mean": 85.91999999999999,
+            "percentage_median": 85.5,
+            "percentage_max": 94.6,
+            "percentage_min": 75.4
         },
         "d9484c25-8671-4a50-9c3d-c74456abd89e": {
             "stream_id": "d9484c25-8671-4a50-9c3d-c74456abd89e",
             "primary_stream": "PCB",
             "secondary_stream": "Geo",
             "subjects": ["301", "029", "042", "043", "044"],
-            "student_count": 9
+            "students_total": 9,
+            "students_passed": 9,
+            "percentage_mean": 81.64444444444445,
+            "percentage_median": 82.2,
+            "percentage_max": 94.4,
+            "percentage_min": 66.6
         },
         "ebc35c5a-5ae9-4770-95bc-52731d1a07f1": {
             "stream_id": "ebc35c5a-5ae9-4770-95bc-52731d1a07f1",
             "primary_stream": "PCB",
             "secondary_stream": "MMS",
             "subjects": ["301", "042", "043", "044", "835"],
-            "student_count": 5
+            "students_total": 5,
+            "students_passed": 5,
+            "percentage_mean": 82.24000000000001,
+            "percentage_median": 83.4,
+            "percentage_max": 90.6,
+            "percentage_min": 75.2
         },
         "4ab90d1e-b4d6-4066-9663-fa43fa76de3c": {
             "stream_id": "4ab90d1e-b4d6-4066-9663-fa43fa76de3c",
             "primary_stream": "PCM",
             "secondary_stream": "IP",
             "subjects": ["301", "041", "042", "043", "065"],
-            "student_count": 53
+            "students_total": 53,
+            "students_passed": 51,
+            "percentage_mean": 81.60377358490567,
+            "percentage_median": 82.2,
+            "percentage_max": 95.4,
+            "percentage_min": 53.6
         },
         "77cbdfbf-9dc9-464b-9eff-ab5d43de85b9": {
             "stream_id": "77cbdfbf-9dc9-464b-9eff-ab5d43de85b9",
             "primary_stream": "PCM",
             "secondary_stream": "Geo",
             "subjects": ["301", "029", "041", "042", "043"],
-            "student_count": 15
+            "students_total": 15,
+            "students_passed": 15,
+            "percentage_mean": 77.02666666666666,
+            "percentage_median": 72.0,
+            "percentage_max": 97.0,
+            "percentage_min": 61.6
         },
         "57d5046a-57f4-4ac8-9af1-03f74d051e52": {
             "stream_id": "57d5046a-57f4-4ac8-9af1-03f74d051e52",
             "primary_stream": "PCM",
             "secondary_stream": "MMS",
             "subjects": ["301", "041", "042", "043", "835"],
-            "student_count": 19
+            "students_total": 19,
+            "students_passed": 19,
+            "percentage_mean": 78.74736842105263,
+            "percentage_median": 78.4,
+            "percentage_max": 91.8,
+            "percentage_min": 65.6
         },
         "1dd26ae0-5913-4015-8f1f-d4671d7e2760": {
             "stream_id": "1dd26ae0-5913-4015-8f1f-d4671d7e2760",
             "primary_stream": "Commerce",
             "secondary_stream": "MMS",
             "subjects": ["301", "030", "054", "055", "835"],
-            "student_count": 11
+            "students_total": 11,
+            "students_passed": 11,
+            "percentage_mean": 83.14545454545454,
+            "percentage_median": 83.8,
+            "percentage_max": 92.8,
+            "percentage_min": 77.0
         },
         "c134d014-d536-4834-a98f-3a423f4428fc": {
             "stream_id": "c134d014-d536-4834-a98f-3a423f4428fc",
             "primary_stream": "Commerce",
             "secondary_stream": "Applied Maths",
             "subjects": ["301", "030", "054", "055", "241"],
-            "student_count": 20
+            "students_total": 20,
+            "students_passed": 20,
+            "percentage_mean": 84.31,
+            "percentage_median": 85.19999999999999,
+            "percentage_max": 97.0,
+            "percentage_min": 69.8
         },
         "02692ecf-df27-483b-b526-eaea565348a1": {
             "stream_id": "02692ecf-df27-483b-b526-eaea565348a1",
             "primary_stream": "Commerce",
             "secondary_stream": "Geo",
             "subjects": ["301", "029", "030", "054", "055"],
-            "student_count": 3
+            "students_total": 3,
+            "students_passed": 3,
+            "percentage_mean": 80.73333333333333,
+            "percentage_median": 82.6,
+            "percentage_max": 89.0,
+            "percentage_min": 70.6
         }
     },
     "students_without_result": 18,

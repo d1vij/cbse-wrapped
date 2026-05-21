@@ -1,0 +1,53 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme inline {
+    --font-heading: "DM Serif Display";
+    --font-text: "EB Garamond";
+    --default-font-family: var(--font-text);
+    --font-mono: "Fira Sans";
+}
+
+/*Colors*/
+/* @theme {
+    --color-primary: #ff8237;
+    --color-background: #fff4e0;
+    /* --color-text: #4b3d2e; */
+/* --color-text: #1C1917; */
+/* --color-text-primary: #242424; */
+/* } */
+
+@theme {
+    /* Lights */
+    --color-background: #fffbdc;
+    --color-surface: #ffd3a5;
+    --color-muted: #ffaa6e;
+    --color-primary: #ff8237;
+    --color-accent: #ff5900;
+
+    /* Darks */
+    --color-heading: #3d2314;
+    --color-label: #423730;
+    --color-body: #2e2822;
+    --color-subtle: #2c1a10;
+    --color-base: #1a0f0a;
+    --color-overlay: #1c1917;
+}
+
+/*
+#FFC9A3
+
+#FFEFD5
+
+#5D4015
+
+#BCAAA4*/
+
+body {
+    @apply text-[18px] md:text-[22px];
+    @apply bg-background text-base;
+}
+
+* {
+    box-sizing: border-box;
+}

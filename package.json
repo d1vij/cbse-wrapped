@@ -33,7 +33,8 @@
         "test": "bun test",
         "prepare": "husky",
         "orchestrator:scrape": "bun run --filter @cbse-wrapped/orchestrator scrape",
-        "orchestrator:compile": "bun run --filter @cbse-wrapped/orchestrator compile"
+        "orchestrator:compile": "bun run --filter @cbse-wrapped/orchestrator compile",
+        "app:dev": "bun run --filter @cbse-wrapped/app dev"
     },
     "type": "module",
     "types": "./dist/index.d.ts",
