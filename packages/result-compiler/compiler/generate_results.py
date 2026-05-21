@@ -76,6 +76,8 @@ def generate_student_result(
     students: list[CleanedStudentResultModel],
     score_matrix: pd.DataFrame,
     percentile_matrix: pd.DataFrame,
+    rank_same_stream: NonZeroInt,
+    rank_all_streams: NonZeroInt,
 ) -> CompiledStudentResultModel:
 
     compiled_primary_subjects = CompiledStudentSubjectsModel.model_validate(
@@ -98,9 +100,6 @@ def generate_student_result(
     same_stream_score_series = total_score_series[
         total_score_series.index.isin(same_stream_students)
     ]
-
-    rank_same_stream = same_stream_score_series.gt(student.total_marks).sum() + 1
-    rank_all_streams = total_score_series.gt(student.total_marks).sum() + 1
 
     return CompiledStudentResultModel(
         **student.model_dump(exclude={"primary_subjects"}),
@@ -144,11 +143,39 @@ def complile_stream(
     )
 
 
+def build_rank_map(
+    score_series: pd.Series,
+    method: str = "min",
+) -> dict[NonZeroInt, NonZeroInt]:
+    """
+    Returns {roll_number: rank} in descending order of score.
+    """
+    return cast(
+        dict[NonZeroInt, NonZeroInt],
+        (score_series.rank(method="first", ascending=False).astype(int).to_dict()),
+    )
+
+
 def generate_school_result(
     school_results: CleanedSchoolResultModel,
 ) -> CompiledSchoolResultModel:
     score_matrix = get_score_matrix(school_results)
     percentile_matrix = get_score_percentile_matrix(school_results, score_matrix)
+
+    # --- build total-score rank maps ONCE ---
+    total_score_ser = pd.Series(
+        {s.roll_number: s.total_marks for s in school_results.students}
+    )
+    rank_all_streams_map = build_rank_map(total_score_ser)
+
+    # per-stream rank maps, also built once
+    rank_same_stream_map: dict[NonZeroInt, int] = {}
+    for stream_id, _ in school_results.streams.items():
+        stream_rolls = {
+            s.roll_number for s in school_results.students if s.stream_id == stream_id
+        }
+        stream_ser = total_score_ser[total_score_ser.index.isin(stream_rolls)]
+        rank_same_stream_map.update(build_rank_map(stream_ser))
 
     students = [
         generate_student_result(
@@ -156,6 +183,8 @@ def generate_school_result(
             score_matrix=score_matrix,
             percentile_matrix=percentile_matrix,
             students=school_results.students,
+            rank_all_streams=rank_all_streams_map[s.roll_number],
+            rank_same_stream=rank_same_stream_map[s.roll_number],
         )
         for s in school_results.students
     ]
