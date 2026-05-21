@@ -11,8 +11,8 @@ from .Units import NonZeroInt
 
 
 class CleanedPrimarySubjectModel(BaseModel):
-    # did the student pass in this subject
     subject_id: SubjectId
+    # did the student pass in this subject
     passed: bool
     grade: Grade
     # CBSE rounds off all marks to nearest integers

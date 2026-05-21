@@ -136,7 +136,7 @@ def complile_stream(
     return CompliedStreamModel(
         **stream.model_dump(),
         students_total=percentage_ser.size,
-        students_passed=sum(1 for s in students if s.result_status == "pass"),
+        students_passed=sum(1 for s in stream_students if s.result_status == "pass"),
         percentage_mean=percentage_ser.mean(),
         percentage_median=percentage_ser.median(),
         percentage_max=percentage_ser.max(),
