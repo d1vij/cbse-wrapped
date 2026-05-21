@@ -8,9 +8,7 @@ let { children } = $props();
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
-<div class="p-8">
 {@render children()}
-</div>
 <!-- <div class="flex min-h-dvh w-dvw flex-col justify-between">
     <footer
         class="flex h-10 w-full items-center justify-center bg-subtle font-mono text-xs font-semibold text-muted"

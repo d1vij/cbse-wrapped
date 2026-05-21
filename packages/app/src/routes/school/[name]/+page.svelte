@@ -1,9 +1,10 @@
 <script lang="ts">
-import { MoveUpRight } from "@lucide/svelte";
+import { ChevronRight, MoveUpRight } from "@lucide/svelte";
 import hyphen from "hyphen/en";
-import { title } from "radashi";
+import { select, sort, title } from "radashi";
 import { resolve } from "$app/paths";
 import ContentList from "$lib/components/ContentList.svelte";
+import StudentsRanked from "$lib/components/StudentsRanked.svelte";
 
 const { data, params } = $props();
 const {
@@ -15,9 +16,20 @@ const {
     streams,
     students_without_result,
 } = $derived(data.results);
+
+const rankedStudents = $derived(
+    sort(
+        select(students, (s) => ({
+            name_candidate: s.name_candidate,
+            roll_number: s.roll_number,
+            rank: s.rank_all_streams,
+        })),
+        (s) => s.rank,
+    ),
+);
 </script>
 
-<div class="space-y-5">
+<div class="space-y-5 pb-12">
     <h1
         class="font-heading text-heading text-5xl wrap-break-word hyphens-auto font-bold"
     >
@@ -51,19 +63,17 @@ const {
                         <h3 class="text-subtle">
                             {stream.primary_stream} + {stream.secondary_stream}
                         </h3>
-                        <div class={["bg-muted p-1 rounded-lg"]}>
-                            <MoveUpRight
-                                class={[
-                                    "size-4 stroke-background transition-all ease-out",
-                                    "group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:scale-102",
-                                ]}
-                            />
-                        </div>
+                        <ChevronRight
+                            class="size-4 stroke-muted group-hover:translate-x-1 group-active:translate-x-1 transition-all"
+                        />
                     </span>
                 </a>
             </li>
         {/each}
     </ul>
+
+
+    <StudentsRanked students={rankedStudents} schoolName={params.name} />
 </div>
 
 <style lang="postcss">

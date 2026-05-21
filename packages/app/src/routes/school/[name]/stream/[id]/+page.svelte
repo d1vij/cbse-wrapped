@@ -1,8 +1,8 @@
 <script lang="ts">
 import hyphen from "hyphen/en";
 import { round, title } from "radashi";
-import { resolve } from "$app/paths";
 import ContentList from "$lib/components/ContentList.svelte";
+import StudentsRanked from "$lib/components/StudentsRanked.svelte";
 
 const { data, params } = $props();
 const { results, stream, students_ranked, subjects } = $derived(data);
@@ -45,59 +45,5 @@ const { results, stream, students_ranked, subjects } = $derived(data);
         {/each}
     </ul>
 
-    <h2 class="font-heading text-heading text-4xl">Students Ranked</h2>
-    <ul class="space-y-6">
-        {#each students_ranked as student, idx (student.roll_number)}
-            <li class="student-item">
-                <a
-                    href={resolve("/school/[name]/student/[rollnumber]", {
-                        name: params.name,
-                        rollnumber: student.roll_number.toString(),
-                    })}
-                    class="block"
-                >
-                    <h5 class="rollnumber">
-                        <span class="rank">#{idx + 1}</span>
-                        <span>
-                            {student.roll_number}
-                        </span>
-                    </h5>
-                    {title(student.name_candidate.toLocaleLowerCase())}
-                </a>
-            </li>
-        {/each}
-    </ul>
+    <StudentsRanked schoolName={params.name} students={students_ranked} />
 </div>
-
-<style lang="postcss">
-    @reference "tailwindcss";
-    .student-item {
-        position: relative;
-        display: block;
-
-        background-color: var(--color-surface);
-        @apply border p-2 border-dashed;
-        border-color: var(--color-muted);
-
-        &:nth-child(1) .rank {
-            background-color: #f0b820;
-        }
-        &:nth-child(2) .rank {
-            background-color: #d4c4a8;
-        }
-        &:nth-child(3) .rank {
-            background-color: #e08840;
-        }
-    }
-
-    .rollnumber {
-        position: absolute;
-
-        @apply -top-3 text-sm  left-3 flex justify-between right-3;
-        span {
-            background-color: var(--color-background);
-            border-color: var(--color-muted);
-            @apply px-1  border border-dashed;
-        }
-    }
-</style>

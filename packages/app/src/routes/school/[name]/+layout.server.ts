@@ -1,16 +1,15 @@
 import { error } from "@sveltejs/kit";
 import * as v from "valibot";
-import {
-    type SchoolResult,
-    SchoolResultSchema,
-} from "$lib/schemas/SchoolResultSchema.js";
+import type { SchoolResult } from "$lib/schemas/SchoolResultSchema.js";
 
-const results = {
+const schoolResults = {
     dav: import("@cbse-wrapped/data/results/dav.json"),
 } as const;
 
 const ParamsSchema = v.object({
-    name: v.picklist(Object.keys(results) as (keyof typeof results)[]),
+    name: v.picklist(
+        Object.keys(schoolResults) as (keyof typeof schoolResults)[],
+    ),
 });
 
 export async function load({ params }) {
@@ -19,18 +18,8 @@ export async function load({ params }) {
         error(404, `No school found with name ${params.name}`);
     }
 
-    const resultJson = (await results[paramsResult.output.name]).default;
-    const resultJsonResult = v.safeParse(SchoolResultSchema, resultJson, {
-        abortEarly: true,
-    });
-
-    if (!resultJsonResult.success) {
-        for (const issue of resultJsonResult.issues) {
-            console.log(issue.message);
-        }
-        error(422, `Errors in validating result json`);
-    }
+    const results = (await schoolResults[paramsResult.output.name]).default;
     return {
-        results: resultJsonResult.output as SchoolResult,
+        results: results as SchoolResult, // we're gonna trust the compile fn in orchestrator
     };
 }

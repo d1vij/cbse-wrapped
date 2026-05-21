@@ -1,0 +1,120 @@
+<script lang="ts">
+import uFuzzy from "@leeoniya/ufuzzy";
+import { ChevronRight } from "@lucide/svelte";
+import { select, similarity, title } from "radashi";
+import { resolve } from "$app/paths";
+import type { Student } from "$lib/schemas";
+
+type Props = {
+    students: {
+        name_candidate: string;
+        roll_number: number;
+        rank: number;
+    }[];
+    schoolName: string;
+};
+
+const { students, schoolName }: Props = $props();
+
+let query = $state("");
+
+let ufIndxes = $state<uFuzzy.HaystackIdxs | undefined | null>(undefined);
+let names = $derived(select(students, (s) => s.name_candidate));
+
+const uf = new uFuzzy();
+const filtered = $derived.by(() => {
+    if (query.length < 2) return students;
+    const [indexes, info, order] = uf.search(names, query);
+    return indexes?.map((i) => students[i]) || [];
+});
+</script>
+
+<h2 class="font-heading text-heading text-4xl">Students Ranked</h2>
+
+<label class="block w-full">
+    <input
+        bind:value={query}
+        type="text"
+        class="block w-full border border-muted focus:outline-none p-2 placeholder:text-subtle/40"
+        placeholder="Search Name"
+    />
+
+    {#if query.length}
+        <span class="block text-xs text-label">
+            Found: {filtered.length}
+        </span>
+    {/if}
+</label>
+
+<ul class="space-y-6">
+    {#each filtered as student (student.roll_number)}
+        <li
+            class={[
+                "student-item",
+                student.rank === 1 && "first",
+                student.rank === 2 && "second",
+                student.rank === 3 && "third",
+            ]}
+        >
+            <a
+                href={resolve("/school/[name]/student/[rollnumber]", {
+                    name: schoolName,
+                    rollnumber: student.roll_number.toString(),
+                })}
+                class="block group"
+            >
+                <h5 class="rollnumber">
+                    <span class="rank">#{student.rank}</span>
+                    <span>
+                        {student.roll_number}
+                    </span>
+                </h5>
+                <span class="flex justify-between items-center">
+                    <span>
+                        {#if student.name_candidate === "DIVIJ VERMA"}
+                            Divij Verma (that's me)
+                        {:else}
+                            {title(student.name_candidate.toLocaleLowerCase())}
+                        {/if}
+                    </span>
+                    <ChevronRight
+                        class="size-4 stroke-muted group-hover:translate-x-1 group-active:translate-x-1 transition-all"
+                    />
+                </span>
+            </a>
+        </li>
+    {/each}
+</ul>
+
+<style lang="postcss">
+    @reference "tailwindcss";
+    .student-item {
+        position: relative;
+        display: block;
+
+        background-color: var(--color-surface);
+        @apply border p-2 border-dashed;
+        border-color: var(--color-muted);
+
+        &.first .rank {
+            background-color: #f0b820;
+        }
+        &.second .rank {
+            background-color: #d4c4a8;
+        }
+        &.third .rank {
+            background-color: #e08840;
+        }
+    }
+
+    .rollnumber {
+        position: absolute;
+
+        @apply -top-3 text-sm  left-3 flex justify-between right-3;
+        span {
+            background-color: var(--color-background);
+            border-color: var(--color-muted);
+            @apply px-1  border border-dashed;
+        }
+    }
+</style>

@@ -18,7 +18,7 @@ import Patch from "$lib/components/Patch.svelte";
     <span class="italic">{content}</span>
 {/snippet}
 
-<div class="space-y-4">
+<div class="space-y-4 p-8">
     <h1 class="font-heading text-5xl font-black tracking-wide text-heading">CBSE Wrapped</h1>
 
     <div class={["mt-6 space-y-4 px-2 leading-snug"]}>

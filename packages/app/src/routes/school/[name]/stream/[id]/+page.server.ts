@@ -1,5 +1,5 @@
 import { error } from "@sveltejs/kit";
-import { sort } from "radashi";
+import { select, sort } from "radashi";
 import * as v from "valibot";
 import { getStudentsWithStream } from "$lib/utils/getStudentsWithStream.js";
 export async function load({ params, parent }) {
@@ -26,13 +26,24 @@ export async function load({ params, parent }) {
         subId: subId,
         subName: results.subjects_available[subId],
     }));
-    const streamStudents = getStudentsWithStream(
+    const _streamStudents = getStudentsWithStream(
         stream.stream_id,
         results.students,
     );
 
-    // rank_same_stream would correspond to the rank in "THIS" stream
-    const studentsRanked = sort(streamStudents, (s) => s.rank_same_stream);
+    const studentsRanked = sort(
+        select(
+            results.students,
+            (s) => ({
+                name_candidate: s.name_candidate,
+                roll_number: s.roll_number,
+                // rank_same_stream would correspond to the rank in "THIS" stream
+                rank: s.rank_same_stream,
+            }),
+            (s) => s.stream_id === stream.stream_id,
+        ),
+        (s) => s.rank,
+    );
 
     return {
         stream,
