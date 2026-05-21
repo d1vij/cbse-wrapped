@@ -6,9 +6,9 @@
 import pandas as pd
 
 from compiler.models.CleanedResultModel import (
+    CleanedPrimarySubjectModel,
     CleanedSchoolResultModel,
     CleanedStudentResultModel,
-    CleanedPrimarySubjectModel,
     SecondarySubjectModel,
     StudentSubjectsModel,
 )
@@ -92,7 +92,7 @@ def clean_student_result(
 
     if stream_id is None:
         raise ValueError(
-            f"Couldnt resolve streams for subjects with code {primary_subjects}"
+            f"Couldnt resolve streams for subjects with code {primary_subjects}\nStudent's subject codes include {subjects_series.sort_values().to_list()}"
         )
 
     return CleanedStudentResultModel(

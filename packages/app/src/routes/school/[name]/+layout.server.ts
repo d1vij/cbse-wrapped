@@ -4,6 +4,7 @@ import type { SchoolResult } from "$lib/schemas/SchoolResultSchema.js";
 
 const schoolResults = {
     dav: import("@cbse-wrapped/data/results/dav.json"),
+    orchid: import("@cbse-wrapped/data/results/orchid.json"),
 } as const;
 
 const ParamsSchema = v.object({

@@ -8,7 +8,7 @@ const { data, params } = $props();
 const { results, stream, students_ranked, subjects } = $derived(data);
 </script>
 
-<div class="space-y-5">
+<div class="pb-15">
     <span class="text-xs leading-tight font-heading text-subtle"
         >{title(results.school_name.toLocaleLowerCase())}</span
     >
@@ -20,19 +20,21 @@ const { results, stream, students_ranked, subjects } = $derived(data);
         )}
     </h1>
 
-    <ContentList
-        items={[
-            ["Total Students", stream.students_total],
-            ["Students Passed", stream.students_passed],
-            ["Average Percentage", round(stream.percentage_mean, 2)],
-            ["Median Percentage", round(stream.percentage_median, 2)],
-            ["Maximum Percentage", round(stream.percentage_max, 2)],
-            ["Minimum Percentage", round(stream.percentage_min, 2)],
-        ]}
-    />
+    <div class="mb-5 mt-6">
+        <ContentList
+            items={[
+                ["Total Students", stream.students_total],
+                ["Students Passed", stream.students_passed],
+                ["Average Percentage", round(stream.percentage_mean, 2)],
+                ["Median Percentage", round(stream.percentage_median, 2)],
+                ["Maximum Percentage", round(stream.percentage_max, 2)],
+                ["Minimum Percentage", round(stream.percentage_min, 2)],
+            ]}
+        />
+    </div>
 
     <h2 class="font-heading text-heading text-4xl">Subjects</h2>
-    <ul class="list-decimal list-inside">
+    <ul class="mt-2 mb-7 list-decimal list-inside">
         {#each subjects as { subId, subName }, idx (subId)}
             <li class="flex justify-between w-full">
                 <span class="">

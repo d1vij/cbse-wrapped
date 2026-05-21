@@ -1,4 +1,5 @@
 <script lang="ts">
+import { vibrateOnClick } from "@d1vij/shit-i-always-use/svelte";
 import { ChevronRight, MoveUpRight } from "@lucide/svelte";
 import hyphen from "hyphen/en";
 import { select, sort, title } from "radashi";
@@ -29,9 +30,9 @@ const rankedStudents = $derived(
 );
 </script>
 
-<div class="space-y-5 pb-12">
+<div class="pb-15">
     <h1
-        class="font-heading text-heading text-5xl wrap-break-word hyphens-auto font-bold"
+        class="font-heading text-heading text-5xl wrap-break-word hyphens-auto font-bold block mb-4"
     >
         {title(school_name.toLocaleLowerCase())}
     </h1>
@@ -48,8 +49,8 @@ const rankedStudents = $derived(
         ]}
     />
 
-    <h2 class="font-heading text-heading text-4xl">Streams Offered</h2>
-    <ul class="space-y-2">
+    <h2 class="font-heading text-heading text-4xl mb-2 mt-4">Streams</h2>
+    <ul class="space-y-4 mb-6">
         {#each Object.values(streams) as stream (stream.stream_id)}
             <li>
                 <a
@@ -58,20 +59,22 @@ const rankedStudents = $derived(
                         id: stream.stream_id,
                         name: params.name,
                     })}
+                    {@attach vibrateOnClick(100)}
                 >
                     <span class="flex justify-between items-center">
                         <h3 class="text-subtle">
                             {stream.primary_stream} + {stream.secondary_stream}
                         </h3>
-                        <ChevronRight
-                            class="size-4 stroke-muted group-hover:translate-x-1 group-active:translate-x-1 transition-all"
-                        />
+                        <div class="p-0.5 border border-muted border-dashed bg-background">
+                            <ChevronRight
+                                class="size-4 stroke-muted group-hover:translate-x-1 group-active:translate-x-1 transition-all"
+                            />
+                        </div>
                     </span>
                 </a>
             </li>
         {/each}
     </ul>
-
 
     <StudentsRanked students={rankedStudents} schoolName={params.name} />
 </div>

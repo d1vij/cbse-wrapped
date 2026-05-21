@@ -7,8 +7,11 @@
         "strict": true,
         "skipLibCheck": true,
         "declaration": true,
-        "isolatedDeclarations": false
+        "isolatedDeclarations": false,
+        "composite": true
     },
+
+    "files": [],
     // reference
     "references": [
         {
@@ -21,10 +24,5 @@
             "path": "./packages/app"
         }
     ],
-    "exclude": [
-        "node_modules",
-        "dist",
-        "packages/*/test/**",
-        "packages/*/src/**"
-    ]
+    "exclude": ["node_modules", "dist", "**/*.d.ts", "**/*.spec.ts"]
 }

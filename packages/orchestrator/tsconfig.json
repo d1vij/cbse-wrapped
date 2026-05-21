@@ -6,11 +6,8 @@
         "target": "ESNext",
         "module": "Preserve",
         "moduleDetection": "force",
-        "types": ["bun"],
-        "rootDir": "./src",
-        "paths": {
-            "~/*": ["./src/*"]
-        }
+        "types": ["bun", "node"],
+        "rootDir": "./src"
     },
     "include": ["src/**/*", "scripts/**/*"]
 }

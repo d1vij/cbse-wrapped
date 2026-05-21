@@ -1,9 +1,9 @@
 <script lang="ts">
+import { vibrateOnClick } from "@d1vij/shit-i-always-use/svelte";
 import uFuzzy from "@leeoniya/ufuzzy";
 import { ChevronRight } from "@lucide/svelte";
 import { select, similarity, title } from "radashi";
 import { resolve } from "$app/paths";
-import type { Student } from "$lib/schemas";
 
 type Props = {
     students: {
@@ -16,27 +16,27 @@ type Props = {
 
 const { students, schoolName }: Props = $props();
 
-let query = $state("");
-
-let ufIndxes = $state<uFuzzy.HaystackIdxs | undefined | null>(undefined);
+// extract the names to act as reference for fuzzy searching
 let names = $derived(select(students, (s) => s.name_candidate));
 
+let query = $state("");
 const uf = new uFuzzy();
 const filtered = $derived.by(() => {
     if (query.length < 2) return students;
-    const [indexes, info, order] = uf.search(names, query);
+    const [indexes] = uf.search(names, query);
     return indexes?.map((i) => students[i]) || [];
 });
 </script>
 
-<h2 class="font-heading text-heading text-4xl">Students Ranked</h2>
+<h2 class="block mb-2 font-heading text-heading text-4xl">Students Ranked</h2>
 
-<label class="block w-full">
+<label class="block w-full mb-8">
     <input
         bind:value={query}
         type="text"
         class="block w-full border border-muted focus:outline-none p-2 placeholder:text-subtle/40"
         placeholder="Search Name"
+        spellcheck="false"
     />
 
     {#if query.length}
@@ -62,6 +62,9 @@ const filtered = $derived.by(() => {
                     rollnumber: student.roll_number.toString(),
                 })}
                 class="block group"
+
+
+                {@attach vibrateOnClick(100)}
             >
                 <h5 class="rollnumber">
                     <span class="rank">#{student.rank}</span>
@@ -77,9 +80,13 @@ const filtered = $derived.by(() => {
                             {title(student.name_candidate.toLocaleLowerCase())}
                         {/if}
                     </span>
-                    <ChevronRight
-                        class="size-4 stroke-muted group-hover:translate-x-1 group-active:translate-x-1 transition-all"
-                    />
+                    <div
+                        class="p-0.5 border border-muted border-dashed bg-background"
+                    >
+                        <ChevronRight
+                            class="size-4 stroke-muted group-hover:translate-x-1 group-active:translate-x-1 transition-all"
+                        />
+                    </div>
                 </span>
             </a>
         </li>
@@ -110,7 +117,7 @@ const filtered = $derived.by(() => {
     .rollnumber {
         position: absolute;
 
-        @apply -top-3 text-sm  left-3 flex justify-between right-3;
+        @apply -top-3 text-sm  left-3 flex gap-1 right-3;
         span {
             background-color: var(--color-background);
             border-color: var(--color-muted);

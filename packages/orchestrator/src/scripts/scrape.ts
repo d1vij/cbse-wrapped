@@ -7,8 +7,9 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fetchForSchool, SchoolRecordSchema } from "@cbse-wrapped/scraper";
+import chalk from "chalk";
 import * as v from "valibot";
-import { dataDir } from "~/index";
+import { dataDir, schools } from "../index";
 
 const studentDataDir = path.join(dataDir, "student-data");
 const scrapedDataDir = path.join(dataDir, "scraped");
@@ -16,11 +17,16 @@ const scrapedDataDir = path.join(dataDir, "scraped");
 if ((await fs.exists(path.join(dataDir, "student-data"))) === false) {
     throw new Error(`student-data directory doesnt exist at ${dataDir}`);
 }
-const davIn = path.join(studentDataDir, "dav.json");
-const davOut = path.join(scrapedDataDir, "dav.json");
 
-const studentInfo = v.parse(SchoolRecordSchema, await Bun.file(davIn).json());
-const scraped = await fetchForSchool(studentInfo);
-
-const json = JSON.stringify(scraped);
-await Bun.file(davOut).write(json);
+for (const school of schools) {
+    const schoolIn = path.join(studentDataDir, `${school}.json`);
+    const schoolOut = path.join(scrapedDataDir, `${school}.json`);
+    const studentInfo = v.parse(
+        SchoolRecordSchema,
+        await Bun.file(schoolIn).json(),
+    );
+    const scraped = await fetchForSchool(studentInfo);
+    const json = JSON.stringify(scraped);
+    await Bun.file(schoolOut).write(json);
+    console.log(chalk.green(`Scraped successfully for ${school}`));
+}
