@@ -2,14 +2,24 @@
     "extends": "../../tsconfig.json",
     "compilerOptions": {
         "composite": true,
-        "lib": ["ESNext"],
+        "lib": [
+            "ESNext"
+        ],
         "target": "ESNext",
         "module": "Preserve",
         "moduleDetection": "force",
-        "types": ["bun"],
+        "types": [
+            "bun"
+        ],
+        "rootDir": "./src",
         "paths": {
-            "~/*": ["./src/*"]
+            "~/*": [
+                "./src/*"
+            ]
         }
     },
-    "include": ["src/**/*", "scripts/**/*"]
+    "include": [
+        "src/**/*",
+        "scripts/**/*"
+    ]
 }
