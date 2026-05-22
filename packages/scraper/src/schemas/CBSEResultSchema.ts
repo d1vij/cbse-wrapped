@@ -3,17 +3,7 @@ import * as v from "valibot";
 /**
  * CBSE 9-point grade scale
  */
-export const GradeSchema = v.picklist([
-    "A1",
-    "A2",
-    "B1",
-    "B2",
-    "C1",
-    "C2",
-    "D1",
-    "D2",
-    "E",
-]);
+export const GradeSchema = v.picklist(["A1", "A2", "B1", "B2", "C1", "C2", "D1", "D2", "E"]);
 export type Grade = v.InferOutput<typeof GradeSchema>;
 
 /**
@@ -306,10 +296,5 @@ export type CBSEResultResponse = v.InferInput<typeof CBSEResultResponseSchema>;
 /**
  * Union of failed and succesfull responses.
  */
-export const SuccessOrFailedResponseSchema = v.union([
-    CBSEResultResponseSchema,
-    ErrorResponseSchema,
-]);
-export type SuccessOrFailedResponse = v.InferOutput<
-    typeof SuccessOrFailedResponseSchema
->;
+export const SuccessOrFailedResponseSchema = v.union([CBSEResultResponseSchema, ErrorResponseSchema]);
+export type SuccessOrFailedResponse = v.InferOutput<typeof SuccessOrFailedResponseSchema>;

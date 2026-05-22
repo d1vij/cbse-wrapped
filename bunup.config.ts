@@ -37,6 +37,7 @@ export default defineWorkspace(
         format: ["esm"],
         target: "bun",
         sourcemap: "linked",
+        clean: true,
         dts: {
             inferTypes: true,
         },

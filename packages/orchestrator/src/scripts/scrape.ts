@@ -21,10 +21,7 @@ if ((await fs.exists(path.join(dataDir, "student-data"))) === false) {
 for (const school of schools) {
     const schoolIn = path.join(studentDataDir, `${school}.json`);
     const schoolOut = path.join(scrapedDataDir, `${school}.json`);
-    const studentInfo = v.parse(
-        SchoolRecordSchema,
-        await Bun.file(schoolIn).json(),
-    );
+    const studentInfo = v.parse(SchoolRecordSchema, await Bun.file(schoolIn).json());
     const scraped = await fetchForSchool(studentInfo);
     const json = JSON.stringify(scraped);
     await Bun.file(schoolOut).write(json);

@@ -1,10 +1,10 @@
 <script lang="ts">
-    import x from "@cbse-wrapped/data/results/dav.json";
-    import s from "@cbse-wrapped/data/streams.json";
-    import { vibrateOnClick } from "@d1vij/shit-i-always-use/svelte";
-    import { title } from "radashi";
-    import { resolve } from "$app/paths";
-    import Patch from "$lib/components/Patch.svelte";
+import x from "@cbse-wrapped/data/results/dav.json";
+import s from "@cbse-wrapped/data/streams.json";
+import { vibrateOnClick } from "@d1vij/shit-i-always-use/svelte";
+import { title } from "radashi";
+import { resolve } from "$app/paths";
+import Patch from "$lib/components/Patch.svelte";
 </script>
 
 {#snippet Link(title: string, href: string, external: boolean = false)}
@@ -27,18 +27,21 @@
 
     <div class={["mt-6 space-y-4"]}>
         <p>
-            I exploited Digilocker's own endpoint, and used it scrape the
-            results. Then cleaned, analyzed and compiled them to generate a
-            report on CBSE 2026's Results.
+            I reverse engineered DigiLocker's results API to scrape the CBSE
+            2026 results, processed it through a data cleaning and analysis
+            pipeline, and compiled it to create this report.
         </p>
         <p>
-            It only requires the list of student names and {@render Italic(
-                "just one student's rollnumber",
-            )} to scrape & generate results of the whole school. (A massive oversighting
-            done by CBSE)
+            The report includes an overall school performance summary, a
+            breakdown by stream, and individual student overviews. Because some
+            students are missing, the overall analysis may not be fully
+            accurate, but it still provides a reliable indication of the
+            school's performance.
         </p>
         <p>
-            This project is {@render Link(
+            You can read a detailed architecture and implementation details
+            {@render Link("here", resolve("/the-blog-part"))}. The project is
+            also fully {@render Link(
                 "open source",
                 "https://github.com/d1vij/cbse-wrapped",
                 true,
@@ -46,9 +49,7 @@
         </p>
     </div>
 
-    <h2 class="font-heading text-3xl text-heading" id="scrapped-schools">
-        Some schools that I have scraped
-    </h2>
+    <h2 class="font-heading text-3xl text-heading" id="scrapped-schools">Schools</h2>
     <nav class="gap-2">
         <ol class="navlist">
             <li>

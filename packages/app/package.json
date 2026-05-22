@@ -14,12 +14,11 @@
         "build": "bun run --bun vite build",
         "preview": "vite preview",
         "prepare": "svelte-kit sync || echo ''",
-        "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-        "lint": "prettier --check . && eslint . --write",
-        "format": "prettier --write ."
+        "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
     },
     "dependencies": {
         "@cbse-wrapped/data": "workspace:*",
+        "@cbse-wrapped/scraper": "workspace:*",
         "@d1vij/shit-i-always-use": "^0.1.26",
         "@leeoniya/ufuzzy": "^1.0.19",
         "@lucide/svelte": "^1.3.0",

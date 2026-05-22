@@ -1,17 +1,7 @@
 import * as v from "valibot";
 import { NonZeroFloatSchema, NonZeroIntSchema } from "$lib/schemas/UnitsSchema";
 
-export const GradeSchema = v.picklist([
-    "A1",
-    "A2",
-    "B1",
-    "B2",
-    "C1",
-    "C2",
-    "D1",
-    "D2",
-    "E",
-]);
+export const GradeSchema = v.picklist(["A1", "A2", "B1", "B2", "C1", "C2", "D1", "D2", "E"]);
 
 export const SubjectIdSchema = v.pipe(
     v.string(),

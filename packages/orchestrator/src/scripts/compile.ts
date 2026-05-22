@@ -11,13 +11,7 @@ import chalk from "chalk";
 import * as v from "valibot";
 import { dataDir, schools } from "../index";
 
-const compilerPackageDir = path.join(
-    import.meta.dir,
-    "..",
-    "..",
-    "..",
-    "result-compiler",
-);
+const compilerPackageDir = path.join(import.meta.dir, "..", "..", "..", "result-compiler");
 
 for (const school of schools) {
     const schoolIn = path.resolve(dataDir, "scraped", `${school}.json`);
@@ -33,20 +27,11 @@ for (const school of schools) {
     // but this will drastically improve dev HMR for very big
     // results. also honestly there's no point in validating
     // on the app since no mutation will happen post result compilation
-    const results = v.safeParse(
-        SchoolResultSchema,
-        await Bun.file(schoolOut).json(),
-    );
+    const results = v.safeParse(SchoolResultSchema, await Bun.file(schoolOut).json());
     if (results.success) {
-        console.log(
-            chalk.green(
-                `Result compilation and Validation successfull for ${school}`,
-            ),
-        );
+        console.log(chalk.green(`Result compilation and Validation successfull for ${school}`));
     } else {
-        console.log(
-            chalk.red("Result compilation and Validation failed with errors:"),
-        );
+        console.log(chalk.red("Result compilation and Validation failed with errors:"));
         console.log(v.summarize(results.issues));
     }
 }

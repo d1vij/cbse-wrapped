@@ -3,6 +3,7 @@ import hyphen from "hyphen/en";
 import { round, title } from "radashi";
 import ContentList from "$lib/components/ContentList.svelte";
 import StudentsRanked from "$lib/components/StudentsRanked.svelte";
+import StudentDistribution from "$lib/components/Visuals/StudentDistribution.svelte";
 
 const { data, params } = $props();
 const { results, stream, students_ranked, subjects } = $derived(data);
@@ -20,18 +21,24 @@ const { results, stream, students_ranked, subjects } = $derived(data);
         )}
     </h1>
 
-    <div class="mb-5 mt-6">
+    <ul class="space-y-2 grid grid-cols-[1fr_auto] w-full mt-5">
         <ContentList
             items={[
                 ["Total Students", stream.students_total],
                 ["Students Passed", stream.students_passed],
-                ["Average Percentage", round(stream.percentage_mean, 2)],
-                ["Median Percentage", round(stream.percentage_median, 2)],
-                ["Maximum Percentage", round(stream.percentage_max, 2)],
-                ["Minimum Percentage", round(stream.percentage_min, 2)],
             ]}
         />
-    </div>
+
+        <StudentDistribution students={students_ranked} />
+        <ContentList
+            items={[
+                ["Average Percentage", `${round(stream.percentage_mean, 2)}%`],
+                ["Median Percentage", `${round(stream.percentage_median, 2)}%`],
+                ["Maximum Percentage", `${round(stream.percentage_max, 2)}%`],
+                ["Minimum Percentage", `${round(stream.percentage_min, 2)}%`],
+            ]}
+        />
+    </ul>
 
     <h2 class="font-heading text-heading text-4xl">Subjects</h2>
     <ul class="mt-2 mb-7 list-decimal list-inside">
@@ -47,5 +54,9 @@ const { results, stream, students_ranked, subjects } = $derived(data);
         {/each}
     </ul>
 
-    <StudentsRanked schoolName={params.name} students={students_ranked} />
+    <StudentsRanked
+        schoolName={params.name}
+        students={students_ranked}
+        rank_by="rank_same_stream"
+    />
 </div>

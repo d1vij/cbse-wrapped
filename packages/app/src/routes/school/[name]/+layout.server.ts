@@ -8,9 +8,7 @@ const schoolResults = {
 } as const;
 
 const ParamsSchema = v.object({
-    name: v.picklist(
-        Object.keys(schoolResults) as (keyof typeof schoolResults)[],
-    ),
+    name: v.picklist(Object.keys(schoolResults) as (keyof typeof schoolResults)[]),
 });
 
 export async function load({ params }) {

@@ -28,9 +28,7 @@ export function generateAdmitCardNumber({
     school_number,
 }: GenerateAdmitCardNumberProps): string {
     if (centre_number.length === 0 || centre_number.length % 2 !== 0) {
-        throw new Error(
-            `Center number (${centre_number} should be even digits long.`,
-        );
+        throw new Error(`Center number (${centre_number} should be even digits long.`);
     }
 
     const F = fathers_name.at(-2);

@@ -12,10 +12,7 @@ test("Known Fetching", async () => {
         rollnumber,
     });
 
-    await Bun.write(
-        path.join(__dirname, `../dis/scraped/${rollnumber}.json`),
-        JSON.stringify(results, null, 4),
-    );
+    await Bun.write(path.join(__dirname, `../dis/scraped/${rollnumber}.json`), JSON.stringify(results, null, 4));
 
     expect(results).toBeObject();
 }, 15_000);
@@ -36,10 +33,7 @@ describe("Unknown Fetching", () => {
             rollnumber,
         });
 
-        await Bun.write(
-            path.join(__dirname, `../dist/scraped/${rollnumber}.json`),
-            JSON.stringify(results, null, 4),
-        );
+        await Bun.write(path.join(__dirname, `../dist/scraped/${rollnumber}.json`), JSON.stringify(results, null, 4));
 
         expect(results).toBeObject();
     }, 15_000);
@@ -59,10 +53,7 @@ describe("Unknown Fetching", () => {
             rollnumber,
         });
 
-        await Bun.write(
-            path.join(__dirname, `../dist/scraped/${rollnumber}.json`),
-            JSON.stringify(results, null, 4),
-        );
+        await Bun.write(path.join(__dirname, `../dist/scraped/${rollnumber}.json`), JSON.stringify(results, null, 4));
 
         expect(results).toBeObject();
     }, 15_000);

@@ -6,11 +6,7 @@ export async function load({ params, parent }) {
     const { results } = await parent();
     const result = v.safeParse(
         v.object({
-            id: v.picklist(
-                Object.keys(
-                    results.streams,
-                ) as (keyof typeof results.streams)[],
-            ),
+            id: v.picklist(Object.keys(results.streams) as (keyof typeof results.streams)[]),
         }),
         params,
     );
@@ -26,23 +22,17 @@ export async function load({ params, parent }) {
         subId: subId,
         subName: results.subjects_available[subId],
     }));
-    const _streamStudents = getStudentsWithStream(
-        stream.stream_id,
-        results.students,
-    );
+    const _streamStudents = getStudentsWithStream(stream.stream_id, results.students);
 
     const studentsRanked = sort(
         select(
             results.students,
-            (s) => ({
-                name_candidate: s.name_candidate,
-                roll_number: s.roll_number,
-                // rank_same_stream would correspond to the rank in "THIS" stream
-                rank: s.rank_same_stream,
-            }),
+            (s) => s,
             (s) => s.stream_id === stream.stream_id,
         ),
-        (s) => s.rank,
+
+        // rank_same_stream would correspond to the rank in "THIS" stream
+        (s) => s.rank_same_stream,
     );
 
     return {

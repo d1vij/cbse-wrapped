@@ -1,9 +1,6 @@
 import * as v from "valibot";
 import { StreamIdSchema } from "$lib/schemas/StreamSchema";
-import {
-    PrimarySubjectSchema,
-    SecondarySubjectSchema,
-} from "$lib/schemas/SubjectSchema";
+import { PrimarySubjectSchema, SecondarySubjectSchema } from "$lib/schemas/SubjectSchema";
 import { NonZeroFloatSchema, NonZeroIntSchema } from "$lib/schemas/UnitsSchema";
 
 export const StudentSchema = v.strictObject({

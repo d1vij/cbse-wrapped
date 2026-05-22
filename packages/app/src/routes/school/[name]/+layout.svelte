@@ -1,11 +1,15 @@
 <script lang="ts">
 import { vibrateOnClick } from "@d1vij/shit-i-always-use/svelte";
 import { ChevronLeft } from "@lucide/svelte";
-import { resolve } from "$app/paths";
 
 const { children } = $props();
 </script>
 
+<!--
+    NOTE: Navigating back from /students/[rollnumber] resolves to /school/[name] 
+    instead to /school/[name]/stream/[id] due to how the route is structured, and 
+    it is NOT broken.
+-->
 <a
     class="ml-8 mt-4 block text-base bg-heading border-muted w-fit p-2 px-2 group"
     href={".."}

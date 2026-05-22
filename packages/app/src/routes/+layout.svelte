@@ -8,7 +8,7 @@ let { children } = $props();
 
 <svelte:head><link rel="icon" href={favicon} /></svelte:head>
 
-<div class="md:max-w-160 mx-auto">
+<div class="w-[min(100%,--spacing(120))] md:py-10 mx-auto">
     {@render children()}
 </div>
 <!-- <div class="flex min-h-dvh w-dvw flex-col justify-between">

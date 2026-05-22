@@ -2,10 +2,7 @@ import chalk from "chalk";
 import * as v from "valibot";
 import { MARKER } from "~/lib/utils";
 
-import {
-    type CBSEResultResponse,
-    SuccessOrFailedResponseSchema,
-} from "~/schemas/CBSEResultSchema";
+import { type CBSEResultResponse, SuccessOrFailedResponseSchema } from "~/schemas/CBSEResultSchema";
 
 /**
  * Props which {@link fetchResults} takes
@@ -21,31 +18,23 @@ export type FetchResultsProps = {
  * @param FetchResultProps containing student's admit card number and rollnumber
  * @returns Promise<{@link CBSEResult}>
  */
-export async function fetchResults({
-    admitnumber,
-    rollnumber,
-}: FetchResultsProps): Promise<CBSEResultResponse> {
+export async function fetchResults({ admitnumber, rollnumber }: FetchResultsProps): Promise<CBSEResultResponse> {
     // thats why api endpoints should be behind some authetication
     // fetch copied as is from digilocker's site
-    const response = await fetch(
-        "https://results.digilocker.gov.in/api/cbse/hscer/results",
-        {
-            method: "POST",
-            headers: {
-                accept: "*/*",
-                "content-type":
-                    "application/x-www-form-urlencoded; charset=UTF-8",
-                "x-requested-with": "XMLHttpRequest",
-                cookie: "Path=/",
-                Referer:
-                    "https://results.digilocker.gov.in/CBSE12th2026resultXIInruew.html",
-            },
-
-            // since we are generating the rollnumber and admit card number it can be inserted as is
-            // but ideally this should be encoded into url params
-            body: `rroll=${rollnumber}&year=2026&admn_id=${admitnumber}`,
+    const response = await fetch("https://results.digilocker.gov.in/api/cbse/hscer/results", {
+        method: "POST",
+        headers: {
+            accept: "*/*",
+            "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+            "x-requested-with": "XMLHttpRequest",
+            cookie: "Path=/",
+            Referer: "https://results.digilocker.gov.in/CBSE12th2026resultXIInruew.html",
         },
-    );
+
+        // since we are generating the rollnumber and admit card number it can be inserted as is
+        // but ideally this should be encoded into url params
+        body: `rroll=${rollnumber}&year=2026&admn_id=${admitnumber}`,
+    });
 
     const json = await response.json();
     const results = v.safeParse(SuccessOrFailedResponseSchema, json);

@@ -8,15 +8,8 @@ import { MARKER } from "~/lib/utils";
 import type { CBSEResultResponse } from "~/schemas/CBSEResultSchema";
 import type { FailedResultFetch } from "~/schemas/FailedResultFetchSchema";
 
-import {
-    type SchoolRecord,
-    SchoolRecordSchema,
-    type Student,
-} from "~/schemas/SchoolRecordsSchema";
-import {
-    type SchoolResult,
-    SchoolResultSchema,
-} from "~/schemas/SchoolResultSchema";
+import { type SchoolRecord, SchoolRecordSchema, type Student } from "~/schemas/SchoolRecordsSchema";
+import { type SchoolResult, SchoolResultSchema } from "~/schemas/SchoolResultSchema";
 
 /**
  * Fetches the result for a single student.
@@ -43,9 +36,7 @@ async function fetchStudent(
         });
     } catch (e: unknown) {
         if (e instanceof Error) {
-            console.log(
-                `${MARKER} Error in generating admit card number. Error: ${e.message}`,
-            );
+            console.log(`${MARKER} Error in generating admit card number. Error: ${e.message}`);
         } else throw e;
 
         return {
@@ -63,9 +54,7 @@ async function fetchStudent(
         return results;
     } catch (e: unknown) {
         if (e instanceof Error) {
-            console.log(
-                `${MARKER} Error in generating admit card number. Error: ${e.message}`,
-            );
+            console.log(`${MARKER} Error in generating admit card number. Error: ${e.message}`);
 
             return {
                 status: "failed",
@@ -83,15 +72,10 @@ async function fetchStudent(
  * @param data SchoolRecord
  * @returns Promise<SchoolResult>
  */
-export async function fetchForSchool(
-    data: SchoolRecord,
-): Promise<SchoolResult> {
+export async function fetchForSchool(data: SchoolRecord): Promise<SchoolResult> {
     // fetching 10 parallel requests is pretty fast even for 100+ students
     // without getting ratelimited whatsoever. so increasing it might not be beneficial per se
-    const results = await parallel<
-        Student,
-        FailedResultFetch | CBSEResultResponse
-    >(10, data.students, (student) => {
+    const results = await parallel<Student, FailedResultFetch | CBSEResultResponse>(10, data.students, (student) => {
         console.log(`${MARKER} Fetching result for ${student.name}`);
         return fetchStudent(student, {
             centre_number: data.centre_number,
