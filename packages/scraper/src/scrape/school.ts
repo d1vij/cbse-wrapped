@@ -28,10 +28,12 @@ async function fetchStudent(
     try {
         admitnumber = generateAdmitCardNumber({
             ...commonData,
-            // im gonna assume both the parents have the same surname as the student
-            // since we only require the letters from the surname for generating the admit card number
-            fathers_name: student.name,
-            mothers_name: student.name,
+            // use the parent's name if provided, or else fallback to the student's name
+            // since we only require the letters from the surname for generating the
+            // admit card number. passing parent's name is useful for the students
+            // who's parent's surnames are different.
+            fathers_name: student.name_father ?? student.name,
+            mothers_name: student.name_mother ?? student.name,
             roll_number: student.roll_number,
         });
     } catch (e: unknown) {

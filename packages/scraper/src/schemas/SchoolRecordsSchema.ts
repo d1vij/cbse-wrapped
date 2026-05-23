@@ -3,6 +3,8 @@ import * as v from "valibot";
 export const StudentSchema = v.object({
     name: v.string(),
     roll_number: v.string(),
+    name_mother: v.optional(v.string()),
+    name_father: v.optional(v.string()),
 });
 
 export type Student = v.InferInput<typeof StudentSchema>;
