@@ -1,8 +1,8 @@
 <script lang="ts">
-type Props = {
-    items: [string, string][];
-};
-const { items } = $props();
+    type Props = {
+        items: [string, string][];
+    };
+    const { items } = $props();
 </script>
 
 {#each items as [label, content], idx (idx)}

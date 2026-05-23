@@ -1,37 +1,41 @@
 <script lang="ts">
-import { vibrateOnClick } from "@d1vij/shit-i-always-use/svelte";
-import { ChevronRight, MoveUpRight } from "@lucide/svelte";
-import { counting, round, select, sort, title } from "radashi";
-import { resolve } from "$app/paths";
-import ContentList from "$lib/components/ContentList.svelte";
-import StudentsRanked from "$lib/components/StudentsRanked.svelte";
-import StudentDistribution from "$lib/components/Visuals/StudentDistribution.svelte";
+    import { vibrateOnClick } from "@d1vij/shit-i-always-use/svelte";
+    import { ChevronRight, MoveUpRight } from "@lucide/svelte";
+    import { counting, round, select, sort, title } from "radashi";
+    import { resolve } from "$app/paths";
+    import ContentList from "$lib/components/ContentList.svelte";
+    import StudentsRanked from "$lib/components/StudentsRanked.svelte";
+    import StudentDistribution from "$lib/components/Visuals/StudentDistribution.svelte";
 
-const { data, params } = $props();
-const {
-    school_name,
-    school_number,
-    centre_number,
-    date_of_results,
-    students,
-    streams,
-    students_without_result,
-    percentage_mean,
-    percentage_median,
-    percentage_max,
-    percentage_min,
-    subjects_available,
-} = $derived(data.results);
+    const { data, params } = $props();
+    const {
+        school_name,
+        school_number,
+        centre_number,
+        date_of_results,
+        students,
+        streams,
+        students_without_result,
+        percentage_mean,
+        percentage_median,
+        percentage_max,
+        percentage_min,
+        subjects_available,
+    } = $derived(data.results);
 
-const rankedStudents = $derived(
-    sort(
-        select(students, (s) => s),
-        // rank all streams corresponds to the school rank
-        (s) => s.rank_all_streams,
-    ),
-);
-const passedStudents = $derived(counting(students, (s) => (s.cleared_all_subjects ? "passed" : "failed")).passed);
+    const rankedStudents = $derived(
+        sort(
+            select(students, (s) => s),
+            // rank all streams corresponds to the school rank
+            (s) => s.rank_all_streams,
+        ),
+    );
+    const passedStudents = $derived(counting(students, (s) => (s.cleared_all_subjects ? "passed" : "failed")).passed);
 </script>
+
+<svelte:head>
+    <title>{title(params.name)} · CBSE Wrapped</title>
+</svelte:head>
 
 <div class="pb-15">
     <h1
@@ -79,9 +83,7 @@ const passedStudents = $derived(counting(students, (s) => (s.cleared_all_subject
                         <h3 class="text-subtle">
                             {stream.primary_stream} + {stream.secondary_stream}
                         </h3>
-                        <div
-                            class="p-0.5 border border-muted border-dashed bg-background"
-                        >
+                        <div class="p-0.5 border border-muted border-dashed bg-background">
                             <ChevronRight
                                 class="size-4 stroke-muted group-hover:translate-x-1 group-active:translate-x-1 transition-all"
                             />
@@ -92,11 +94,10 @@ const passedStudents = $derived(counting(students, (s) => (s.cleared_all_subject
         {/each}
     </ul>
 
-    <StudentsRanked
-        students={rankedStudents}
-        schoolName={params.name}
-        rank_by="rank_all_streams"
-    />
+    <StudentsRanked students={rankedStudents} schoolName={params.name} rank_by="rank_all_streams" />
+    
+
+    
 </div>
 
 <style lang="postcss">

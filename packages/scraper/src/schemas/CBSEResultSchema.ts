@@ -102,8 +102,6 @@ export const CBSEResultSchema = v.object({
         v.isoTimestamp(),
     ),
 
-    // ── Identifiers ──────────────────────────────────────────────────────────
-
     /** Roll number */
     RROLL: v.pipe(v.string(), v.regex(/^\d+$/)),
 

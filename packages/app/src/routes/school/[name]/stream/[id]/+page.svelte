@@ -1,13 +1,18 @@
 <script lang="ts">
-import hyphen from "hyphen/en";
-import { round, title } from "radashi";
-import ContentList from "$lib/components/ContentList.svelte";
-import StudentsRanked from "$lib/components/StudentsRanked.svelte";
-import StudentDistribution from "$lib/components/Visuals/StudentDistribution.svelte";
+    import hyphen from "hyphen/en";
+    import { round, title } from "radashi";
+    import ContentList from "$lib/components/ContentList.svelte";
+    import StudentsRanked from "$lib/components/StudentsRanked.svelte";
+    import StudentDistribution from "$lib/components/Visuals/StudentDistribution.svelte";
 
-const { data, params } = $props();
-const { results, stream, students_ranked, subjects } = $derived(data);
+    const { data, params } = $props();
+    const { results, stream, students_ranked, subjects } = $derived(data);
 </script>
+
+
+<svelte:head>
+    <title>{stream.primary_stream} + {stream.secondary_stream} at {params.name} · CBSE Wrapped</title>
+</svelte:head>
 
 <div class="pb-15">
     <span class="text-xs leading-tight font-heading text-subtle"

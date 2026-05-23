@@ -1,10 +1,6 @@
 <script lang="ts">
-import x from "@cbse-wrapped/data/results/dav.json";
-import s from "@cbse-wrapped/data/streams.json";
-import { vibrateOnClick } from "@d1vij/shit-i-always-use/svelte";
-import { title } from "radashi";
-import { resolve } from "$app/paths";
-import Patch from "$lib/components/Patch.svelte";
+    import { vibrateOnClick } from "@d1vij/shit-i-always-use/svelte";
+    import { resolve } from "$app/paths";
 </script>
 
 {#snippet Link(title: string, href: string, external: boolean = false)}
@@ -16,32 +12,25 @@ import Patch from "$lib/components/Patch.svelte";
     >
 {/snippet}
 
-{#snippet Italic(content: string)}
-    <span class="italic">{content}</span>
-{/snippet}
-
 <div class="space-y-4 p-8">
-    <h1 class="font-heading text-5xl font-black tracking-wide text-heading">
-        CBSE Wrapped
-    </h1>
+    <h1 class="font-heading text-5xl font-black tracking-wide text-heading">CBSE Wrapped</h1>
 
-    <div class={["mt-6 space-y-4"]}>
+    <div class={["mt-6 space-y-4 leading-relaxed"]}>
         <p>
-            I reverse engineered DigiLocker's results API to scrape the CBSE
-            2026 results, processed it through a data cleaning and analysis
-            pipeline, and compiled it to create this report.
+            I reverse engineered DigiLocker's results API to scrape the CBSE 2026 results, processed
+            it through a data cleaning and analysis pipeline, and compiled it to create this report.
         </p>
         <p>
-            The report includes an overall school performance summary, a
-            breakdown by stream, and individual student overviews. Because some
-            students are missing, the overall analysis may not be fully
-            accurate, but it still provides a reliable indication of the
-            school's performance.
+            The report includes an overall school performance summary, a breakdown by stream, and
+            individual student overviews. Because some students are missing, the overall analysis
+            may not be fully accurate, but it still provides a reliable indication of the school's
+            performance.
         </p>
         <p>
-            You can read a detailed architecture and implementation details
-            {@render Link("here", resolve("/the-blog-part"))}. The project is
-            also fully {@render Link(
+            I recommend reading more about this project {@render Link(
+                "here",
+                resolve("/the-blog-part"),
+            )}. This project is also fully {@render Link(
                 "open source",
                 "https://github.com/d1vij/cbse-wrapped",
                 true,
@@ -53,16 +42,10 @@ import Patch from "$lib/components/Patch.svelte";
     <nav class="gap-2">
         <ol class="navlist">
             <li>
-                {@render Link(
-                    "DAV Pune",
-                    resolve("/school/[name]", { name: "dav" }),
-                )}
+                {@render Link("DAV Pune", resolve("/school/[name]", { name: "dav" }))}
             </li>
             <li>
-                {@render Link(
-                    "Orchid Pune",
-                    resolve("/school/[name]", { name: "orchid" }),
-                )}
+                {@render Link("Orchid Pune", resolve("/school/[name]", { name: "orchid" }))}
             </li>
         </ol>
     </nav>

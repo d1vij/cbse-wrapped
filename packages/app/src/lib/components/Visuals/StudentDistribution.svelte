@@ -1,16 +1,16 @@
 <script lang="ts">
-import { counting } from "radashi";
-import type { Student } from "$lib/schemas";
+    import { counting } from "radashi";
+    import type { Student } from "$lib/schemas";
 
-type Props = {
-    students: Student[];
-};
+    type Props = {
+        students: Student[];
+    };
 
-const { students }: Props = $props();
+    const { students }: Props = $props();
 
-let { M: countBoys, F: countGirls } = $derived(counting(students, (s) => s.sex));
-let percentBoys = $derived((countBoys * 100) / students.length);
-let percentGirls = $derived(100 - percentBoys);
+    let { M: countBoys, F: countGirls } = $derived(counting(students, (s) => s.sex));
+    let percentBoys = $derived((countBoys * 100) / students.length);
+    let percentGirls = $derived(100 - percentBoys);
 </script>
 
 <li class="col-span-full">

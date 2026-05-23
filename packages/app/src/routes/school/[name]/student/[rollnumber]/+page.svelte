@@ -1,59 +1,61 @@
 <script lang="ts">
-import { generateAdmitCardNumber } from "@cbse-wrapped/scraper";
-import { round, select, title } from "radashi";
-import { resolve } from "$app/paths";
-import { page } from "$app/state";
-import ContentList from "$lib/components/ContentList.svelte";
-import Patch from "$lib/components/Patch.svelte";
+    import { generateAdmitCardNumber } from "@cbse-wrapped/scraper";
+    import { round, select, title } from "radashi";
+    import { resolve } from "$app/paths";
+    import { page } from "$app/state";
+    import ContentList from "$lib/components/ContentList.svelte";
+    import Patch from "$lib/components/Patch.svelte";
 
-const { data } = $props();
-const { results, student } = $derived(data);
-const {
-    name_candidate,
-    roll_number,
-    sex,
-    name_father,
-    name_mother,
-    percentage,
-    cleared_all_subjects,
-    rank_all_streams,
-    percentile_all_streams,
-    percentile_same_stream,
-    rank_same_stream,
-    primary_subjects,
-    compartment_subject_codes,
-    candidate_type,
-    total_primary_subjects,
-    secondary_subjects,
-} = $derived(student);
+    const { data, params } = $props();
+    const { results, student } = $derived(data);
+    const {
+        name_candidate,
+        roll_number,
+        sex,
+        name_father,
+        name_mother,
+        percentage,
+        cleared_all_subjects,
+        rank_all_streams,
+        percentile_all_streams,
+        percentile_same_stream,
+        rank_same_stream,
+        primary_subjects,
+        compartment_subject_codes,
+        total_primary_subjects,
+        secondary_subjects,
+    } = $derived(student);
 
-let stream = $derived(results.streams[student.stream_id]);
+    let stream = $derived(results.streams[student.stream_id]);
 
-function titleCase(str: string) {
-    return title(str.toLocaleLowerCase());
-}
+    function titleCase(str: string) {
+        return title(str.toLocaleLowerCase());
+    }
 
-const ordinal = new Intl.PluralRules("en", { type: "ordinal" });
-const suffixes = {
-    one: "st",
-    two: "nd",
-    few: "rd",
-    other: "th",
-} as Record<Intl.LDMLPluralRule, string>;
-function resolveTh(n: number): string {
-    return suffixes[ordinal.select(n)];
-}
+    const ordinal = new Intl.PluralRules("en", { type: "ordinal" });
+    const suffixes = {
+        one: "st",
+        two: "nd",
+        few: "rd",
+        other: "th",
+    } as Record<Intl.LDMLPluralRule, string>;
+    function resolveTh(n: number): string {
+        return suffixes[ordinal.select(n)];
+    }
 
-const failedSubjects = $derived.by(() => {
-    if (compartment_subject_codes.length === 3) return titleCase(results.subjects_available[compartment_subject_codes]);
-    return `subjects with codes ${compartment_subject_codes}`;
-});
+    const failedSubjects = $derived.by(() => {
+        if (compartment_subject_codes.length === 3)
+            return titleCase(results.subjects_available[compartment_subject_codes]);
+        return `subjects with codes ${compartment_subject_codes}`;
+    });
 </script>
 
+<svelte:head>
+    <title>{titleCase(name_candidate)} of {params.name} · CBSE Wrapped</title>
+</svelte:head>
+
 <div class="mb-4">
-    <h1
-        class="font-heading text-heading text-5xl wrap-break-word hyphens-auto font-bold block"
-    >
+    <h1 class="font-heading text-heading text-5xl wrap-break-word hyphens-auto font-bold block">
         {titleCase(name_candidate)}
     </h1>
     <h2 class={["block text-start text-sm text-label w-fit"]}>
@@ -93,21 +95,22 @@ const failedSubjects = $derived.by(() => {
             has passed in all but {failedSubjects},
         {/if}
 
-        with a gross percentage of {round(percentage, 2)}% across all subjects,
-        which ranks {sex === "M" ? "him" : "her"}
-        {rank_all_streams}{resolveTh(rank_all_streams)}, in the whole school
-        with a percentile of {round(percentile_all_streams, 2)} and
-        {rank_same_stream}{resolveTh(rank_same_stream)} with {round(
-            percentile_same_stream,
+        with a gross percentage of {round(percentage, 2)}% across all subjects, which ranks {sex ===
+        "M"
+            ? "him"
+            : "her"}
+        {rank_all_streams}{resolveTh(rank_all_streams)}, in the whole school with a percentile of {round(
+            percentile_all_streams,
             2,
-        )} percentile within {sex === "M" ? "his" : "her"}
+        )} and
+        {rank_same_stream}{resolveTh(rank_same_stream)} with {round(percentile_same_stream, 2)} percentile
+        within {sex === "M" ? "his" : "her"}
         <a
             href={resolve("/school/[name]/stream/[id]", {
                 name: page.params.name || "",
                 id: stream.stream_id,
             })}
-            class="underline decoration-wavy decoration-2 decoration-accent"
-            >stream</a
+            class="underline decoration-wavy decoration-2 decoration-accent">stream</a
         >.
     </p>
 </div>
@@ -120,19 +123,14 @@ const failedSubjects = $derived.by(() => {
                 {titleCase(results.subjects_available[subject.subject_id])}
             </h2>
             <div class="bg-surface p-2">
-                <div
-                    class="size-full border-2 border-background border-dashed p-2"
-                >
+                <div class="size-full border-2 border-background border-dashed p-2">
                     <ul class="grid grid-cols-[1fr_auto] px-2">
                         <ContentList
                             items={[
                                 ["Marks Theory", subject.marks_theory],
                                 ["Marks Practicals", subject.marks_practicals],
                                 ["Grade", subject.grade],
-                                [
-                                    "School Percentile",
-                                    round(subject.percentile_all_streams, 2),
-                                ],
+                                ["School Percentile", round(subject.percentile_all_streams, 2)],
                                 [
                                     "School Rank",
                                     `${subject.rank_all_streams}${resolveTh(subject.rank_all_streams)}`,

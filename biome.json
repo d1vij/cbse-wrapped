@@ -26,6 +26,11 @@
         "indentWidth": 4,
         "includes": ["**", "!**/dist", "!**/node_modules"]
     },
+    "html": {
+        "formatter": {
+            "bracketSameLine": true
+        }
+    },
     "vcs": {
         "enabled": true,
         "useIgnoreFile": true,
@@ -34,7 +39,12 @@
     "overrides": [
         {
             "includes": ["**/*.svelte", "**/*.astro", "**/*.vue"],
-            "html": { "experimentalFullSupportEnabled": true },
+            "html": {
+                "experimentalFullSupportEnabled": true,
+                "formatter": {
+                    "indentScriptAndStyle": true
+                }
+            },
             "linter": {
                 "rules": {
                     "style": {

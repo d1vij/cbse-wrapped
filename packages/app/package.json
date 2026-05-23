@@ -39,6 +39,7 @@
         "@types/bun": "^1.3.14",
         "@types/node": "^24",
         "globals": "^17.4.0",
+        "rollup-plugin-visualizer": "^7.0.1",
         "svelte": "^5.55.2",
         "svelte-check": "^4.4.6",
         "tailwindcss": "^4.2.2",

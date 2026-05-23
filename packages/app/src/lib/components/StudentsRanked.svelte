@@ -3,9 +3,9 @@
     import uFuzzy from "@leeoniya/ufuzzy";
     import { ChevronRight } from "@lucide/svelte";
     import { select, similarity, title } from "radashi";
+    import { IsFocusWithin } from "runed";
     import { resolve } from "$app/paths";
     import type { Student } from "$lib/schemas";
-    import { IsFocusWithin } from "runed";
 
     type Props = {
         students: Student[];

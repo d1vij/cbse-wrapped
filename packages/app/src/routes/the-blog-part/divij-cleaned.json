@@ -1,0 +1,93 @@
+{
+    "roll_number": 15623245,
+    "name_candidate": "DIVIJ VERMA",
+    "name_father": "SHIVENDER VERMA",
+    "name_mother": "PRIYANKA VERMA",
+    "sex": "M",
+    "catagory": false,
+    "candidate_type": "regular",
+    "stream_id": "4ab90d1e-b4d6-4066-9663-fa43fa76de3c",
+    "total_primary_subjects": 5,
+    "primary_subjects": {
+        "sub_1": {
+            "subject_id": "301",
+            "passed": true,
+            "grade": "C1",
+            "marks_theory": 55,
+            "marks_practicals": 19,
+            "marks_total": 74,
+            "marks_total_words": "SEVENTY FOUR",
+            "percentage": 74.0,
+            "percentile_all_streams": 6.551724137931035,
+            "rank_same_stream": 49,
+            "rank_all_streams": 135
+        },
+        "sub_2": {
+            "subject_id": "041",
+            "passed": true,
+            "grade": "A2",
+            "marks_theory": 61,
+            "marks_practicals": 20,
+            "marks_total": 81,
+            "marks_total_words": "EIGHTY ONE",
+            "percentage": 81.0,
+            "percentile_all_streams": 53.09278350515464,
+            "rank_same_stream": 26,
+            "rank_all_streams": 44
+        },
+        "sub_3": {
+            "subject_id": "042",
+            "passed": true,
+            "grade": "A1",
+            "marks_theory": 53,
+            "marks_practicals": 29,
+            "marks_total": 82,
+            "marks_total_words": "EIGHTY TWO",
+            "percentage": 82.0,
+            "percentile_all_streams": 59.009009009009006,
+            "rank_same_stream": 23,
+            "rank_all_streams": 44
+        },
+        "sub_4": {
+            "subject_id": "043",
+            "passed": true,
+            "grade": "B1",
+            "marks_theory": 50,
+            "marks_practicals": 27,
+            "marks_total": 77,
+            "marks_total_words": "SEVENTY SEVEN",
+            "percentage": 77.0,
+            "percentile_all_streams": 47.2972972972973,
+            "rank_same_stream": 28,
+            "rank_all_streams": 58
+        },
+        "sub_5": {
+            "subject_id": "065",
+            "passed": true,
+            "grade": "A2",
+            "marks_theory": 64,
+            "marks_practicals": 30,
+            "marks_total": 94,
+            "marks_total_words": "NINETY FOUR",
+            "percentage": 94.0,
+            "percentile_all_streams": 49.056603773584904,
+            "rank_same_stream": 26,
+            "rank_all_streams": 26
+        },
+        "sub_6": null
+    },
+    "secondary_subjects": [
+        { "subject_id": "500", "grade": "A1" },
+        { "subject_id": "502", "grade": "A1" },
+        { "subject_id": "503", "grade": "A1" }
+    ],
+    "cleared_all_subjects": true,
+    "result_status": "pass",
+    "compartment_subject_codes": "",
+    "total_marks": 408,
+    "percentage": 81.6,
+    "percentile_same_stream": 47.16981132075472,
+    "percentile_all_streams": 45.17241379310345,
+    "rank_same_stream": 28,
+    "rank_all_streams": 79
+}

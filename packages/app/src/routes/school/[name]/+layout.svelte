@@ -1,8 +1,8 @@
 <script lang="ts">
-import { vibrateOnClick } from "@d1vij/shit-i-always-use/svelte";
-import { ChevronLeft } from "@lucide/svelte";
+    import { vibrateOnClick } from "@d1vij/shit-i-always-use/svelte";
+    import { ChevronLeft } from "@lucide/svelte";
 
-const { children } = $props();
+    const { children } = $props();
 </script>
 
 <!--

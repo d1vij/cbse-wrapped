@@ -1,8 +1,8 @@
 <script lang="ts">
-import type { Snippet } from "svelte";
-import type { ClassValue } from "svelte/elements";
+    import type { Snippet } from "svelte";
+    import type { ClassValue } from "svelte/elements";
 
-const props: { children: Snippet; class?: ClassValue } = $props();
+    const props: { children: Snippet; class?: ClassValue } = $props();
 </script>
 
 <div class={["patch", "p-6", props.class]}>
