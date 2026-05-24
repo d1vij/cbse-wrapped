@@ -39,6 +39,7 @@ export async function fetchResults({ admitnumber, rollnumber }: FetchResultsProp
     const json = await response.json();
     const results = v.safeParse(SuccessOrFailedResponseSchema, json);
     if (!results.success) {
+        console.log(json);
         throw new Error(
             `${MARKER} Error in Result Parsing.\n${chalk.yellow("Issues")}:\n${JSON.stringify(results.issues, null, 4)}`,
         );

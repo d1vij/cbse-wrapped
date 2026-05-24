@@ -31,8 +31,11 @@ export function generateAdmitCardNumber({
         throw new Error(`Center number (${centre_number} should be even digits long.`);
     }
 
-    const F = fathers_name.at(-2);
-    const M = mothers_name.at(-1);
+    // remove all spaces from name to account for names with
+    // abbreviated single letter last names, like DIVIJ V.
+    // The second last letter for DIVIJ V should be J and not ' ' (space)
+    const F = fathers_name.replaceAll(" ", "").at(-2);
+    const M = mothers_name.replaceAll(" ", "").at(-1);
     const rr = roll_number.slice(-2);
     const ss = school_number.slice(0, 2);
 

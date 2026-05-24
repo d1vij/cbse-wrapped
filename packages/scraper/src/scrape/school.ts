@@ -56,7 +56,7 @@ async function fetchStudent(
         return results;
     } catch (e: unknown) {
         if (e instanceof Error) {
-            console.log(`${MARKER} Error in generating admit card number. Error: ${e.message}`);
+            console.log(`${MARKER} Error in fetching resuls. Error: ${e}`);
 
             return {
                 status: "failed",
