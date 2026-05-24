@@ -36,6 +36,12 @@
                 true,
             )}.
         </p>
+        <p>
+            For any questions, suggestions, or requests for redaction, send a mail to {@render Link(
+                "leenukhs@gmail.com",
+                "mailto:leenukhs@gmail.com",
+            )}.
+        </p>
     </div>
 
     <h2 class="font-heading text-3xl text-heading" id="scrapped-schools">Schools</h2>

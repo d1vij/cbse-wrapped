@@ -4,7 +4,8 @@
     import { resolve } from "$app/paths";
     import { page } from "$app/state";
     import ContentList from "$lib/components/ContentList.svelte";
-    import Patch from "$lib/components/Patch.svelte";
+
+    import { fuckYou } from "$lib/utils/redactStudent";
 
     const { data, params } = $props();
     const { results, student } = $derived(data);
@@ -56,18 +57,22 @@
 
 <div class="mb-4">
     <h1 class="font-heading text-heading text-5xl wrap-break-word hyphens-auto font-bold block">
-        {titleCase(name_candidate)}
+        {fuckYou(roll_number, name_candidate)}
     </h1>
     <h2 class={["block text-start text-sm text-label w-fit"]}>
         <span class={["px-1", sex === "F" ? "bg-[#E0A3A9] " : " bg-[#A3C3D9]"]}>
             {roll_number} <span class="select-none">|</span>
-            {generateAdmitCardNumber({
-                centre_number: results.centre_number.toString(),
-                fathers_name: name_father,
-                mothers_name: name_mother,
-                roll_number: roll_number.toString(),
-                school_number: results.school_number.toString(),
-            })}
+            {fuckYou(
+                roll_number,
+                generateAdmitCardNumber({
+                    centre_number: results.centre_number.toString(),
+                    fathers_name: name_father,
+                    mothers_name: name_mother,
+                    roll_number: roll_number.toString(),
+                    school_number: results.school_number.toString(),
+                }),
+                "as-is",
+            )}
         </span>
         <span>
             ({stream.primary_stream} + {stream.secondary_stream})

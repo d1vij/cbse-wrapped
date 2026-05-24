@@ -244,8 +244,8 @@
             </p>
 
             <p>
-                This package again exposes a CLI which is used by the <i>orchestrator</i> package to compile
-                the scraped results.
+                This package again exposes a CLI which is used by the <i>orchestrator</i> package to
+                compile the scraped results.
             </p>
         </section>
 
@@ -288,7 +288,11 @@
     <hr />
 
     <p>
-        Thank you for reading till end <span class="text-sm">❤️</span>
+        Thank you for reading till end <span class="text-sm">❤️</span>.
+        <br>
+        <a href="https://github.com/d1vij/cbse-wrapped/tree/main/packages/data/data/results"
+            >See the <i>Raw and Uncensored</i> results.
+        </a>
     </p>
 
     {@render BackButton()}

@@ -6,6 +6,7 @@
     import { IsFocusWithin } from "runed";
     import { resolve } from "$app/paths";
     import type { Student } from "$lib/schemas";
+    import { fuckYou } from "$lib/utils/redactStudent";
 
     type Props = {
         students: Student[];
@@ -32,9 +33,7 @@
 <h2 class="block mb-2 font-heading text-heading text-4xl">Students Ranked</h2>
 
 <div class={["relative", "min-h-[20dvh]"]}>
-    <label
-        class="block w-full mb-8 sticky top-0 z-20 bg-background backdrop-blur pt-4"
-    >
+    <label class="block w-full mb-8 sticky top-0 z-20 bg-background backdrop-blur pt-4">
         <input
             bind:this={inputElm}
             bind:value={query}
@@ -80,14 +79,10 @@
                             {#if student.name_candidate === "DIVIJ VERMA"}
                                 Divij Verma (that's me)
                             {:else}
-                                {title(
-                                    student.name_candidate.toLocaleLowerCase(),
-                                )}
+                                {fuckYou(student.roll_number, student.name_candidate)}
                             {/if}
                         </span>
-                        <div
-                            class="p-0.5 border border-muted border-dashed bg-background"
-                        >
+                        <div class="p-0.5 border border-muted border-dashed bg-background">
                             <ChevronRight
                                 class="size-4 stroke-muted group-hover:translate-x-1 group-active:translate-x-1 transition-all"
                             />
