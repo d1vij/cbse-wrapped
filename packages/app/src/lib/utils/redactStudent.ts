@@ -1,8 +1,8 @@
 import redactedStudentsRaw from "@cbse-wrapped/data/redacted.json";
+import { title } from "radashi";
 import * as v from "valibot";
 import type { NonZeroInt } from "$lib/schemas";
 import { RedactedStudentsSchema } from "$lib/schemas/RedactedSchema";
-import { title } from "radashi";
 
 const redactedStudents = v.parse(RedactedStudentsSchema, redactedStudentsRaw);
 

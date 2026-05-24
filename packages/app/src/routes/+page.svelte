@@ -15,10 +15,26 @@
 <div class="space-y-4 p-8">
     <h1 class="font-heading text-5xl font-black tracking-wide text-heading">CBSE Wrapped</h1>
 
-    <div class={["mt-6 space-y-4 leading-relaxed"]}>
+    <div
+        class={[
+            "mt-10",
+            "prose-xl prose-stone prose-h1:text-5xl prose-hr:border-dashed",
+            "prose-headings:font-heading prose-headings:text-heading prose-headings:font-semibold prose-ol:list-decimal prose-ul:list-disc",
+            "prose-a:underline prose-a:decoration-wavy prose-a:decoration-accent",
+            "prose-pre:overflow-x-scroll prose-pre:scrollbar-none prose-pre:text-sm",
+        ]}
+    >
+        <h2 id="disclaimer">Disclaimer</h2>
         <p>
-            I reverse engineered DigiLocker's results API to scrape the CBSE 2026 results, processed
-            it through a data cleaning and analysis pipeline, and compiled it to create this report.
+            The student names used in this project are fictitious and have been used for
+            illustrative purposes only. Any resemblance to the names or results of actual students,
+            past or present, is entirely coincidental.
+        </p>
+        <hr />
+        <p>
+            This project demonstrates a <b>hypothetical</b> senario wherein, I reverse engineered DigiLocker's
+            results API to scrape the CBSE 2026 results, processed it through a data cleaning and analysis
+            pipeline, and compiled it to create this report.
         </p>
         <p>
             The report includes an overall school performance summary, a breakdown by stream, and

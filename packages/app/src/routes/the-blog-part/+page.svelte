@@ -29,7 +29,7 @@
 
 <div
     class={[
-        "p-8 prose-xl prose-stone prose-h1:text-5xl",
+        "p-8 prose-xl prose-stone prose-h1:text-5xl prose-hr:border-dashed",
         "prose-headings:font-heading prose-headings:text-heading prose-headings:font-semibold prose-ol:list-decimal prose-ul:list-disc",
         "prose-a:underline prose-a:decoration-wavy prose-a:decoration-accent",
         "prose-pre:overflow-x-scroll prose-pre:scrollbar-none prose-pre:text-sm",
@@ -262,16 +262,23 @@
             <p>The final piece which coordinates between all other packages.</p>
         </section>
     </section>
+    <hr />
 
     <section id="disclaimer">
         <h2>The section with Disclaimer</h2>
         <p>
-            Yes <b>I am aware</b> that this project exposes student's results, but this project is
-            <i>only made for educational and learning purposes</i>. And the fact that <b>I</b> was
-            able to extract the results means <b>anyone</b> could easily brute force<span
+            The student names used in this project are fictitious and have been used for
+            illustrative purposes only. Any resemblance to the names or results of actual students, past or
+            present, is entirely coincidental.
+        </p>
+        <p>
+            This project is <i>only made for educational purposes</i>. And to demonstrate the fact
+            that <b>in a hypothetical senario</b>, if
+            <b>I</b> was able to extract the results, then <b>anyone</b> could easily brute force<span
                 class="font-black text-rose-500 text-xl">*</span
             > their way into scraping all the results.
         </p>
+        <hr />
 
         <p>
             <span class="font-black text-xl text-rose-500">*</span>(another thing that I noticed was
@@ -280,16 +287,14 @@
         </p>
 
         <p>
-            Also each and every line of this project is <i>handwritten</i>, and LLMs were only used
-            in OCR extraction data from photos of student records.
+            Each and every line of this project is <i>handwritten</i>, and LLMs were only used in
+            OCR extraction data from photos of student records.
         </p>
     </section>
 
-    <hr />
-
     <p>
         Thank you for reading till end <span class="text-sm">❤️</span>.
-        <br>
+        <br />
         <a href="https://github.com/d1vij/cbse-wrapped/tree/main/packages/data/data/results"
             >See the <i>Raw and Uncensored</i> results.
         </a>
