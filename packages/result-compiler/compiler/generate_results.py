@@ -103,7 +103,7 @@ def generate_student_result(
 
     return CompiledStudentResultModel(
         **student.model_dump(exclude={"primary_subjects"}),
-        percentage=student.total_marks / student.total_primary_subjects,
+        percentage=student.total_marks / 5, # cbse only considers 5 subjects when calculating percentage
         primary_subjects=compiled_primary_subjects,
         percentile_same_stream=calculate_percentile(
             student.total_marks, same_stream_score_series
