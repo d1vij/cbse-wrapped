@@ -1,6 +1,7 @@
 <script lang="ts">
     import { vibrateOnClick } from "@d1vij/shit-i-always-use/svelte";
     import { resolve } from "$app/paths";
+    import { ChevronRight } from "@lucide/svelte";
 </script>
 
 {#snippet Link(title: string, href: string, external: boolean = false)}
@@ -61,22 +62,34 @@
     </div>
 
     <h2 class="font-heading text-3xl text-heading" id="scrapped-schools">Schools</h2>
-    <nav class="gap-2">
-        <ol class="navlist">
+    <nav class="">
+        {#snippet TheBetterUXWalaButtonToOtherPageCuzPplCantSeemToUnderstandSwigglyLinks(title: string, href: string)}
             <li>
-                {@render Link("DAV Pune", resolve("/school/[name]", { name: "dav" }))}
+                <a href={href}
+                    class="block bg-surface border border-dashed p-2 border-muted group"
+
+                    {@attach vibrateOnClick(100)}
+                >
+                    <span class="flex justify-between items-center">
+                        <span>
+                            {title}
+                        </span>
+                        <div class="p-0.5 border border-muted border-dashed bg-background">
+                            <ChevronRight
+                                class="size-4 stroke-muted group-hover:translate-x-1 group-active:translate-x-1 transition-all"
+                            />
+                        </div>
+                    </span>
+            </a>
             </li>
-            <li>
-                {@render Link("Orchid Pune", resolve("/school/[name]", { name: "orchid" }))}
-            </li>
+        {/snippet}
+        <ol class="space-y-3">
+            {@render TheBetterUXWalaButtonToOtherPageCuzPplCantSeemToUnderstandSwigglyLinks("DAV Pune", resolve("/school/[name]", { name: "dav" }))}
+            {@render TheBetterUXWalaButtonToOtherPageCuzPplCantSeemToUnderstandSwigglyLinks("Orchid Pune", resolve("/school/[name]", { name: "orchid" }))}
         </ol>
     </nav>
 </div>
 
 <style lang="postcss">
     @reference "tailwindcss";
-
-    .navlist {
-        @apply list-inside list-decimal;
-    }
 </style>
