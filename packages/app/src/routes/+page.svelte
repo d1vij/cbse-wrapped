@@ -1,7 +1,7 @@
 <script lang="ts">
     import { vibrateOnClick } from "@d1vij/shit-i-always-use/svelte";
-    import { resolve } from "$app/paths";
     import { ChevronRight } from "@lucide/svelte";
+    import { resolve } from "$app/paths";
 </script>
 
 {#snippet Link(title: string, href: string, external: boolean = false)}
