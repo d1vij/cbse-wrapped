@@ -55,8 +55,8 @@
         </p>
         <p>
             For any questions, suggestions, or requests for redaction, send a mail to {@render Link(
-                "leenukhs@gmail.com",
-                "mailto:leenukhs@gmail.com",
+                "query@divijverma.com",
+                "mailto:query@divijverma.com",
             )}.
         </p>
     </div>
