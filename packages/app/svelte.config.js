@@ -13,9 +13,6 @@ const config = {
         prerender: {
             concurrency: 8,
         },
-        paths: {
-            base: "/cbse-wrapped",
-        },
         adapter: adapter({
             fallback: "404.html",
         }),
